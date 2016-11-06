@@ -20,6 +20,13 @@ public class OwareUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Oware");
 
+        Scene mainMenu = new Scene(createMainMenu(), 400, 300);
+        primaryStage.setScene(mainMenu);
+        
+        primaryStage.show();
+    }
+
+    private Pane createMainMenu() {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #1b2c47");
 
@@ -59,11 +66,7 @@ public class OwareUI extends Application {
         buttonThemeListener(btnAI);
 
         root.setCenter(vbMenuButtons);
-
-        Scene mainMenu = new Scene(root, 400, 300);
-        primaryStage.setScene(mainMenu);
-
-        primaryStage.show();
+        return root;
     }
 
     private void buttonThemeListener(Button button) {
