@@ -20,13 +20,13 @@ public class OwareUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Oware");
 
-        Scene mainMenu = new Scene(createMainMenu(), 400, 300);
+        Scene mainMenu = new Scene(createMainMenu(primaryStage), 800, 500);
         primaryStage.setScene(mainMenu);
-        
+
         primaryStage.show();
     }
 
-    private Pane createMainMenu() {
+    private Pane createMainMenu(Stage primaryStage) {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #1b2c47");
 
@@ -53,23 +53,50 @@ public class OwareUI extends Application {
         Button btnTwoPlayer = new Button("2 Player");
         vbMenuButtons.getChildren().add(btnTwoPlayer);
         btnTwoPlayer.setStyle(sBtnStyle);
-        buttonThemeListener(btnTwoPlayer);
+        buttonAnimations(btnTwoPlayer);
+
+        btnTwoPlayer.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(new Scene(createBoard(), 800, 500));
+            }
+        });
 
         Button btnRandom = new Button("Random Player");
         vbMenuButtons.getChildren().add(btnRandom);
         btnRandom.setStyle(sBtnStyle);
-        buttonThemeListener(btnRandom);
+        buttonAnimations(btnRandom);
+
+        btnRandom.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(new Scene(createBoard(), 800, 500));
+            }
+        });
 
         Button btnAI = new Button("AI Player");
         vbMenuButtons.getChildren().add(btnAI);
         btnAI.setStyle(sBtnStyle);
-        buttonThemeListener(btnAI);
+        buttonAnimations(btnAI);
+
+        btnAI.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(new Scene(createBoard(), 800, 500));
+            }
+        });
 
         root.setCenter(vbMenuButtons);
         return root;
     }
 
-    private void buttonThemeListener(Button button) {
+    private Pane createBoard() {
+        BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-color: #1b2c47");
+        return root;
+    }
+
+    private void buttonAnimations(Button button) {
         final String sBtnStyle = "-fx-font-size: 18px; " +
                 "-fx-background-color: #1b2c47; " +
                 "-fx-border-color: white;" +
