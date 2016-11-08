@@ -149,6 +149,19 @@ public class OwareUI extends Application {
         hbArcOne.setAlignment(Pos.CENTER);
         root.setBottom(hbArcOne);
 
+        Arc arcTwoScore = new Arc();
+        arcTwoScore.setRadiusX(200);
+        arcTwoScore.setRadiusY(100);
+        arcTwoScore.setStartAngle(180.0f);
+        arcTwoScore.setLength(180.0f);
+        arcTwoScore.setType(ArcType.ROUND);
+        arcTwoScore.setFill(Color.valueOf("#1b2c47"));
+        arcTwoScore.setStroke(Color.WHITE);
+
+        HBox hbArcTwo = new HBox(arcTwoScore);
+        hbArcTwo.setAlignment(Pos.CENTER);
+        root.setTop(hbArcTwo);
+
         return root;
     }
 
