@@ -33,11 +33,40 @@ public class Board {
         }
     }
 
+    public boolean canCapture(int nextHouse) {
+        if(nextHouse < 6) {
+            for(int i = 0; i <= nextHouse; ++i) {
+                if(player1.get(i) != 2 || player1.get(i) != 3) {
+                    return true;
+                }
+            }
+
+            for(int i = nextHouse + 1; i < 6; ++i) {
+                if(player1.get(i) > 0) {
+                    return true;
+                }
+            }
+        } else {
+            for(int i = 0; i <= nextHouse - 6; ++i) {
+                if(player2.get(i) != 2 || player2.get(i) != 3) {
+                    return true;
+                }
+            }
+
+            for(int i = nextHouse - 5; i < 6; ++i) {
+                if(player2.get(i) > 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void emptyHouse (int house) {
         if(house < 6) {
             player1.set(house, 0);
         } else {
-            player2.set(house-6, 0);
+            player2.set(house - 6, 0);
         }
     }
 
@@ -48,5 +77,6 @@ public class Board {
             player2.set(house-6, player2.get(house-6) + 1);
         }
     }
+
 
 }

@@ -28,16 +28,18 @@ public class Game {
             --seeds;
         }
 
-        while((board.getHouseSeeds(nextHouse) == 2 || board.getHouseSeeds(nextHouse) == 3) && (house / 6 != nextHouse / 6)) {
+        if(board.canCapture(nextHouse)) {
+            while ((board.getHouseSeeds(nextHouse) == 2 || board.getHouseSeeds(nextHouse) == 3) && (house / 6 != nextHouse / 6)) {
 
-            if(isP1Turn) {
-                player1.increaseScore(board.getHouseSeeds(nextHouse));
-            } else {
-                player2.increaseScore(board.getHouseSeeds(nextHouse));
+                if (isP1Turn) {
+                    player1.increaseScore(board.getHouseSeeds(nextHouse));
+                } else {
+                    player2.increaseScore(board.getHouseSeeds(nextHouse));
+                }
+
+                board.emptyHouse(nextHouse);
+                --nextHouse;
             }
-
-            board.emptyHouse(nextHouse);
-            --nextHouse;
         }
 
         isP1Turn = !isP1Turn;
