@@ -173,6 +173,7 @@ public class OwareUI extends Application {
         bpGameBoard.setTop(hbArcTwo);
 
         Button btnToMenu = new Button("Menu");
+        menuButtonAnimations(btnToMenu);
         btnToMenu.setStyle("-fx-font-size: 18px; " +
                 "-fx-background-color: #1b2c47; " +
                 "-fx-border-color: white;" +
