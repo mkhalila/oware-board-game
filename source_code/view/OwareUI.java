@@ -200,13 +200,32 @@ public class OwareUI extends Application {
                 VBox vbSidebar = new VBox();
                 vbSidebar.setFillWidth(true);
                 vbSidebar.setStyle("-fx-padding: 5px; -fx-background-color: white");
+                vbSidebar.setSpacing(5);
+
+                final String sSideBarButtonStyle = "-fx-font-size: 14px; " +
+                        "-fx-background-color: #1b2c47; " +
+                        "-fx-text-fill: white;";
 
                 Button btnCloseSB = new Button("Close");
-                btnCloseSB.setPrefWidth(100);
-                btnCloseSB.setStyle("-fx-font-size: 14px; " +
-                        "-fx-background-color: #1b2c47; " +
-                        "-fx-text-fill: white;");
+                btnCloseSB.setPrefWidth(114);
+                btnCloseSB.setStyle(sSideBarButtonStyle);
                 vbSidebar.getChildren().add(btnCloseSB);
+
+                Button btnTwoPlayer = new Button("2 Player");
+                btnTwoPlayer.setPrefWidth(114);
+                btnTwoPlayer.setStyle(sSideBarButtonStyle);
+                vbSidebar.getChildren().add(btnTwoPlayer);
+
+                Button btnRandom = new Button("Random Player");
+                btnRandom.setPrefWidth(114);
+                btnRandom.setStyle(sSideBarButtonStyle);
+                btnRandom.setAlignment(Pos.CENTER);
+                vbSidebar.getChildren().add(btnRandom);
+
+                Button btnAI = new Button("AI Player");
+                btnAI.setPrefWidth(114);
+                btnAI.setStyle(sSideBarButtonStyle);
+                vbSidebar.getChildren().add(btnAI);
 
                 bpToMenu.setLeft(vbSidebar);
 
