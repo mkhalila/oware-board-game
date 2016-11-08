@@ -3,11 +3,15 @@ package view;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -93,6 +97,7 @@ public class OwareUI extends Application {
     private Pane createBoard() {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #1b2c47");
+
         return root;
     }
 
