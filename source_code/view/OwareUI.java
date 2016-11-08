@@ -3,16 +3,17 @@ package view;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -57,7 +58,7 @@ public class OwareUI extends Application {
         Button btnTwoPlayer = new Button("2 Player");
         vbMenuButtons.getChildren().add(btnTwoPlayer);
         btnTwoPlayer.setStyle(sBtnStyle);
-        buttonAnimations(btnTwoPlayer);
+        menuButtonAnimations(btnTwoPlayer);
 
         btnTwoPlayer.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -69,7 +70,7 @@ public class OwareUI extends Application {
         Button btnRandom = new Button("Random Player");
         vbMenuButtons.getChildren().add(btnRandom);
         btnRandom.setStyle(sBtnStyle);
-        buttonAnimations(btnRandom);
+        menuButtonAnimations(btnRandom);
 
         btnRandom.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -81,7 +82,7 @@ public class OwareUI extends Application {
         Button btnAI = new Button("AI Player");
         vbMenuButtons.getChildren().add(btnAI);
         btnAI.setStyle(sBtnStyle);
-        buttonAnimations(btnAI);
+        menuButtonAnimations(btnAI);
 
         btnAI.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -127,10 +128,12 @@ public class OwareUI extends Application {
         for (int i = 0; i < 6; ++i) {
             Button btnOneHouse = new Button("" + i);
             btnOneHouse.setStyle(sBtnStyle);
+            houseButtonAnimations(btnOneHouse);
             hbPOneHouseHolder.getChildren().add(btnOneHouse);
 
             Button btnTwoHouse = new Button("" + i);
             btnTwoHouse.setStyle(sBtnStyle);
+            houseButtonAnimations(btnTwoHouse);
             hbPTwoHouseHolder.getChildren().add(btnTwoHouse);
         }
 
@@ -165,12 +168,39 @@ public class OwareUI extends Application {
         return root;
     }
 
-    private void buttonAnimations(Button button) {
+    private void menuButtonAnimations(Button button) {
         final String sBtnStyle = "-fx-font-size: 18px; " +
                 "-fx-background-color: #1b2c47; " +
                 "-fx-border-color: white;" +
                 " -fx-border-radius: 100%; " +
                 "-fx-text-fill: white;";
+
+        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                button.setStyle(sBtnStyle + "-fx-border-color: #1692cc;");
+            }
+        });
+
+        button.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                button.setStyle(sBtnStyle);
+            }
+        });
+    }
+
+    private void houseButtonAnimations(Button button) {
+        final String sBtnStyle = "-fx-font-size: 18px; " +
+                "-fx-background-color: #1b2c47; " +
+                "-fx-border-color: white;" +
+                " -fx-border-radius: 100%; " +
+                "-fx-text-fill: white;" +
+                "-fx-background-radius: 5em; " +
+                "-fx-min-width: 100px; " +
+                "-fx-min-height: 100px; " +
+                "-fx-max-width: 100px; " +
+                "-fx-max-height: 100px;";
 
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
