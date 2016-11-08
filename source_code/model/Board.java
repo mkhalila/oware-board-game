@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Board {
     private ArrayList<Integer> player1;
-
-
     private ArrayList<Integer> player2;
 
 

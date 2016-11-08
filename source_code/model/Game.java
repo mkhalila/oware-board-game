@@ -18,15 +18,28 @@ public class Game {
 
     public void makeMove (int house) {
         int seeds = board.getHouseSeeds(house);
-        int nextHouse = house + 1;
+        int nextHouse = house;
         board.emptyHouse(house);
 
         while(seeds > 0) {
-            board.incrementHouse(nextHouse % 12);
-            ++nextHouse;
+
+            board.incrementHouse(++nextHouse % 12);
             --seeds;
         }
-        
+
+        while((board.getHouseSeeds(nextHouse) == 2 || board.getHouseSeeds(nextHouse) == 3) && (house / 6 != nextHouse / 6)) {
+
+            if(isP1Turn) {
+                player1.increaseScore(board.getHouseSeeds(nextHouse));
+            } else {
+                player2.increaseScore(board.getHouseSeeds(nextHouse));
+            }
+
+            board.emptyHouse(nextHouse);
+            --nextHouse;
+        }
+
+        isP1Turn = !isP1Turn;
 
     }
 

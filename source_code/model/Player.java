@@ -1,7 +1,7 @@
 package model;
 
 
-public abstract class Player {
+public class Player {
 
     private int score;
 
@@ -17,6 +17,11 @@ public abstract class Player {
         this.score = score;
     }
 
-    public abstract void makeMove (int house);
+    public void makeMove (int house){}
+
+    public void increaseScore(int houseSeeds) {
+        score += houseSeeds;
+    }
 
 }
+
