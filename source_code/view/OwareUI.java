@@ -98,6 +98,21 @@ public class OwareUI extends Application {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #1b2c47");
 
+        VBox vbHouseHolder = new VBox();
+        vbHouseHolder.setAlignment(Pos.CENTER);
+        vbHouseHolder.setSpacing(20);
+
+        HBox hbPOneHouseHolder = new HBox();
+        hbPOneHouseHolder.setSpacing(10);
+        hbPOneHouseHolder.setAlignment(Pos.CENTER);
+
+        HBox hbPTwoHouseHolder = new HBox();
+        hbPTwoHouseHolder.setSpacing(10);
+        hbPTwoHouseHolder.setAlignment(Pos.CENTER);
+
+        vbHouseHolder.getChildren().add(hbPOneHouseHolder);
+        vbHouseHolder.getChildren().add(hbPTwoHouseHolder);
+
         return root;
     }
 
