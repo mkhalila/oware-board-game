@@ -61,6 +61,7 @@ public class OwareUI extends Application {
                 "-fx-text-fill: white;";
 
         Button btnTwoPlayer = new Button("2 Player");
+        btnTwoPlayer.setPrefWidth(200);
         vbMenuButtons.getChildren().add(btnTwoPlayer);
         btnTwoPlayer.setStyle(sBtnStyle);
         menuButtonAnimations(btnTwoPlayer);
@@ -73,6 +74,7 @@ public class OwareUI extends Application {
         });
 
         Button btnRandom = new Button("Random Player");
+        btnRandom.setPrefWidth(200);
         vbMenuButtons.getChildren().add(btnRandom);
         btnRandom.setStyle(sBtnStyle);
         menuButtonAnimations(btnRandom);
@@ -85,6 +87,7 @@ public class OwareUI extends Application {
         });
 
         Button btnAI = new Button("AI Player");
+        btnAI.setPrefWidth(200);
         vbMenuButtons.getChildren().add(btnAI);
         btnAI.setStyle(sBtnStyle);
         menuButtonAnimations(btnAI);
