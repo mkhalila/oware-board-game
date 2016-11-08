@@ -23,13 +23,14 @@ import javafx.stage.Stage;
 public class OwareUI extends Application {
     Scene mainMenu;
     Stage primaryStage;
+    BorderPane bpGameBoard;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Oware");
 
-        mainMenu = new Scene(createMainMenu(primaryStage), 800, 500);
+        mainMenu = new Scene(createMainMenu(primaryStage), 813, 500);
         primaryStage.setScene(mainMenu);
 
         primaryStage.show();
@@ -67,7 +68,7 @@ public class OwareUI extends Application {
         btnTwoPlayer.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(new Scene(createBoard(), 800, 500));
+                primaryStage.setScene(new Scene(createBoard(), 813, 500));
             }
         });
 
@@ -79,7 +80,7 @@ public class OwareUI extends Application {
         btnRandom.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(new Scene(createBoard(), 800, 500));
+                primaryStage.setScene(new Scene(createBoard(), 813, 500));
             }
         });
 
@@ -91,7 +92,7 @@ public class OwareUI extends Application {
         btnAI.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(new Scene(createBoard(), 800, 500));
+                primaryStage.setScene(new Scene(createBoard(), 813, 500));
             }
         });
 
@@ -102,6 +103,10 @@ public class OwareUI extends Application {
     private Pane createBoard() {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #1b2c47");
+
+        bpGameBoard = new BorderPane();
+        root.setCenter(bpGameBoard);
+        bpGameBoard.setStyle("-fx-background-color: #1b2c47");
 
         VBox vbHouseHolder = new VBox();
         vbHouseHolder.setAlignment(Pos.CENTER);
@@ -141,7 +146,7 @@ public class OwareUI extends Application {
             hbPTwoHouseHolder.getChildren().add(btnTwoHouse);
         }
 
-        root.setCenter(vbHouseHolder);
+        bpGameBoard.setCenter(vbHouseHolder);
 
         Arc arcOneScore = new Arc();
         arcOneScore.setRadiusX(200);
@@ -154,7 +159,7 @@ public class OwareUI extends Application {
 
         HBox hbArcOne = new HBox(arcOneScore);
         hbArcOne.setAlignment(Pos.CENTER);
-        root.setBottom(hbArcOne);
+        bpGameBoard.setBottom(hbArcOne);
 
         Arc arcTwoScore = new Arc();
         arcTwoScore.setRadiusX(200);
@@ -167,9 +172,7 @@ public class OwareUI extends Application {
 
         HBox hbArcTwo = new HBox(arcTwoScore);
         hbArcTwo.setAlignment(Pos.CENTER);
-        root.setTop(hbArcTwo);
-
-
+        bpGameBoard.setTop(hbArcTwo);
 
         Button btnToMenu = new Button("Menu");
         btnToMenu.setStyle("-fx-font-size: 18px; " +
@@ -185,10 +188,21 @@ public class OwareUI extends Application {
             }
         });
 
-
         HBox hbToMenu = new HBox(btnToMenu);
-        hbToMenu.setAlignment(Pos.CENTER);
-        //root.setTop(hbToMenu);
+        hbToMenu.setStyle("-fx-padding: 5px");
+        root.setLeft(hbToMenu);
+
+        Button btnEvenSpace = new Button("Menu");
+        btnEvenSpace.setVisible(false);
+        btnEvenSpace.setStyle("-fx-font-size: 18px; " +
+                "-fx-background-color: #1b2c47; " +
+                "-fx-border-color: white;" +
+                " -fx-border-radius: 100%; " +
+                "-fx-text-fill: white;");
+
+        HBox hbEvenSpace = new HBox(btnEvenSpace);
+        hbEvenSpace.setStyle("-fx-padding: 5px");
+        root.setRight(hbEvenSpace);
 
         return root;
     }
