@@ -18,6 +18,15 @@ public class Game {
 
     public void makeMove (int house) {
         int seeds = board.getHouseSeeds(house);
+        int nextHouse = house + 1;
+        board.emptyHouse(house);
+
+        while(seeds > 0) {
+            board.incrementHouse(nextHouse % 12);
+            ++nextHouse;
+            --seeds;
+        }
+        
 
     }
 
