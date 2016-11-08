@@ -1,6 +1,8 @@
 package view;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * Created by mkhal on 06/11/2016.
@@ -183,16 +186,40 @@ public class OwareUI extends Application {
                 " -fx-border-radius: 100%; " +
                 "-fx-text-fill: white;");
 
+        BorderPane bpToMenu = new BorderPane();
+
+        HBox hbToMenu = new HBox(btnToMenu);
+        bpToMenu.setCenter(hbToMenu);
+        hbToMenu.setStyle("-fx-padding: 5px");
+        root.setLeft(bpToMenu);
+
         btnToMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(mainMenu);
+                //primaryStage.setScene(mainMenu);
+                VBox vbSidebar = new VBox();
+                vbSidebar.setFillWidth(true);
+                vbSidebar.setStyle("-fx-padding: 5px; -fx-background-color: white");
+
+                Button btnCloseSB = new Button("Close");
+                btnCloseSB.setPrefWidth(100);
+                btnCloseSB.setStyle("-fx-font-size: 14px; " +
+                        "-fx-background-color: #1b2c47; " +
+                        "-fx-text-fill: white;");
+                vbSidebar.getChildren().add(btnCloseSB);
+
+                bpToMenu.setLeft(vbSidebar);
+
+                btnCloseSB.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        bpToMenu.getChildren().remove(vbSidebar);
+                    }
+                });
             }
         });
 
-        HBox hbToMenu = new HBox(btnToMenu);
-        hbToMenu.setStyle("-fx-padding: 5px");
-        root.setLeft(hbToMenu);
+
 
         Button btnEvenSpace = new Button("Menu");
         btnEvenSpace.setVisible(false);
