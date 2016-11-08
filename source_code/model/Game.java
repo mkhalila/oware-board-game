@@ -28,8 +28,9 @@ public class Game {
             --seeds;
         }
 
+        nextHouse %= 12;
         if(board.canCapture(nextHouse)) {
-            while ((board.getHouseSeeds(nextHouse) == 2 || board.getHouseSeeds(nextHouse) == 3) && (house / 6 != nextHouse / 6)) {
+            while ((house / 6 != (nextHouse) / 6) & (board.getHouseSeeds(nextHouse) == 2 || board.getHouseSeeds(nextHouse) == 3) ) {
 
                 if (isP1Turn) {
                     player1.increaseScore(board.getHouseSeeds(nextHouse));
