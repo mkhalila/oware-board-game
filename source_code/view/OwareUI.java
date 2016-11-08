@@ -136,6 +136,19 @@ public class OwareUI extends Application {
 
         root.setCenter(vbHouseHolder);
 
+        Arc arcOneScore = new Arc();
+        arcOneScore.setRadiusX(200);
+        arcOneScore.setRadiusY(100);
+        arcOneScore.setStartAngle(0.0f);
+        arcOneScore.setLength(180.0f);
+        arcOneScore.setType(ArcType.ROUND);
+        arcOneScore.setFill(Color.valueOf("#1b2c47"));
+        arcOneScore.setStroke(Color.WHITE);
+
+        HBox hbArcOne = new HBox(arcOneScore);
+        hbArcOne.setAlignment(Pos.CENTER);
+        root.setBottom(hbArcOne);
+
         return root;
     }
 
