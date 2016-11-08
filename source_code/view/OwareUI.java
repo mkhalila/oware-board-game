@@ -113,6 +113,14 @@ public class OwareUI extends Application {
         vbHouseHolder.getChildren().add(hbPOneHouseHolder);
         vbHouseHolder.getChildren().add(hbPTwoHouseHolder);
 
+        final String sBtnStyle = "-fx-font-size: 18px; " +
+                "-fx-background-color: #1b2c47; " +
+                "-fx-border-color: white;" +
+                " -fx-border-radius: 100%; " +
+                "-fx-text-fill: white;";
+
+        root.setCenter(vbHouseHolder);
+
         return root;
     }
 
