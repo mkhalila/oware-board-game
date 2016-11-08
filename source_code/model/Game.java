@@ -7,6 +7,9 @@ public class Game {
     private Player player2;
     private boolean isFinished;
     private boolean isP1Turn;
+    private static final int P1WON = 1;
+    private static final int P2WON = 2;
+    private static final int DRAW = 0;
 
     public Game(Player player1, Player player2) {
         board = new Board();
@@ -46,5 +49,25 @@ public class Game {
         isP1Turn = !isP1Turn;
 
     }
+
+    public boolean checkScores() {
+        if(player1.getScore() > 24 || player2.getScore() > 24 || (player1.getScore() == 24 && player2.getScore() == 24)) {
+            isFinished = true;
+        }
+        return isFinished;
+    }
+
+    public int returnWinner() {
+        if(player2.getScore() < player1.getScore()) {
+            return P1WON;
+        } else {
+            if(player1.getScore() < player2.getScore()) {
+                return P2WON;
+            } else{
+                return DRAW;
+            }
+    }
+
+
 
 }
