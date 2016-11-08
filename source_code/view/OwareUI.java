@@ -2,6 +2,7 @@ package view;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,12 +21,15 @@ import javafx.stage.Stage;
  * Created by mkhal on 06/11/2016.
  */
 public class OwareUI extends Application {
+    Scene mainMenu;
+    Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         primaryStage.setTitle("Oware");
 
-        Scene mainMenu = new Scene(createMainMenu(primaryStage), 800, 500);
+        mainMenu = new Scene(createMainMenu(primaryStage), 800, 500);
         primaryStage.setScene(mainMenu);
 
         primaryStage.show();
@@ -164,6 +168,27 @@ public class OwareUI extends Application {
         HBox hbArcTwo = new HBox(arcTwoScore);
         hbArcTwo.setAlignment(Pos.CENTER);
         root.setTop(hbArcTwo);
+
+
+
+        Button btnToMenu = new Button("Menu");
+        btnToMenu.setStyle("-fx-font-size: 18px; " +
+                "-fx-background-color: #1b2c47; " +
+                "-fx-border-color: white;" +
+                " -fx-border-radius: 100%; " +
+                "-fx-text-fill: white;");
+
+        btnToMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(mainMenu);
+            }
+        });
+
+
+        HBox hbToMenu = new HBox(btnToMenu);
+        hbToMenu.setAlignment(Pos.CENTER);
+        //root.setTop(hbToMenu);
 
         return root;
     }
