@@ -153,7 +153,6 @@ public class OwareUI extends Application {
         arcOneScore.setRadiusY(100);
         arcOneScore.setStartAngle(0.0f);
         arcOneScore.setLength(180.0f);
-        arcOneScore.setType(ArcType.ROUND);
         arcOneScore.setFill(Color.valueOf("#1b2c47"));
         arcOneScore.setStroke(Color.WHITE);
 
@@ -166,7 +165,6 @@ public class OwareUI extends Application {
         arcTwoScore.setRadiusY(100);
         arcTwoScore.setStartAngle(180.0f);
         arcTwoScore.setLength(180.0f);
-        arcTwoScore.setType(ArcType.ROUND);
         arcTwoScore.setFill(Color.valueOf("#1b2c47"));
         arcTwoScore.setStroke(Color.WHITE);
 
