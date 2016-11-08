@@ -22,8 +22,9 @@ public class Game {
         board.emptyHouse(house);
 
         while(seeds > 0) {
-
-            board.incrementHouse(++nextHouse % 12);
+            if((++nextHouse) % 12 == house)
+                continue;
+            board.incrementHouse(nextHouse % 12);
             --seeds;
         }
 

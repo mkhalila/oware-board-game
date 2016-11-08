@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5faff29-5040-4f14-959c-c57f265321ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source_code/model/Board.java" afterPath="$PROJECT_DIR$/source_code/model/Board.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source_code/model/Game.java" afterPath="$PROJECT_DIR$/source_code/model/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source_code/model/HumanPlayer.java" afterPath="$PROJECT_DIR$/source_code/model/HumanPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source_code/model/Player.java" afterPath="$PROJECT_DIR$/source_code/model/Player.java" />
     </list>
     <ignored path="SEG_Crawl.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,8 +67,8 @@
       <file leaf-file-name="Game.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source_code/model/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60248446" vertical-offset="282" max-vertical-offset="1248">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.35403726" vertical-offset="282" max-vertical-offset="1272">
+              <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -91,9 +88,9 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/source_code/model/Board.java" />
-        <option value="$PROJECT_DIR$/source_code/model/Game.java" />
         <option value="$PROJECT_DIR$/source_code/model/Player.java" />
         <option value="$PROJECT_DIR$/source_code/model/HumanPlayer.java" />
+        <option value="$PROJECT_DIR$/source_code/model/Game.java" />
       </list>
     </option>
   </component>
@@ -412,8 +409,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source_code/model/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60248446" vertical-offset="282" max-vertical-offset="1248">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.35403726" vertical-offset="282" max-vertical-offset="1272">
+          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
           <folding />
         </state>
       </provider>
