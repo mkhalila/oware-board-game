@@ -117,7 +117,22 @@ public class OwareUI extends Application {
                 "-fx-background-color: #1b2c47; " +
                 "-fx-border-color: white;" +
                 " -fx-border-radius: 100%; " +
-                "-fx-text-fill: white;";
+                "-fx-text-fill: white;" +
+                "-fx-background-radius: 5em; " +
+                "-fx-min-width: 100px; " +
+                "-fx-min-height: 100px; " +
+                "-fx-max-width: 100px; " +
+                "-fx-max-height: 100px;";
+
+        for (int i = 0; i < 6; ++i) {
+            Button btnOneHouse = new Button("" + i);
+            btnOneHouse.setStyle(sBtnStyle);
+            hbPOneHouseHolder.getChildren().add(btnOneHouse);
+
+            Button btnTwoHouse = new Button("" + i);
+            btnTwoHouse.setStyle(sBtnStyle);
+            hbPTwoHouseHolder.getChildren().add(btnTwoHouse);
+        }
 
         root.setCenter(vbHouseHolder);
 
