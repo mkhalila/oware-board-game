@@ -57,50 +57,14 @@ public class OwareUI extends Application {
         vbMenuButtons.setAlignment(Pos.CENTER);
         vbMenuButtons.setSpacing(10);
 
-        final String sBtnStyle = "-fx-font-size: 18px; " +
-                "-fx-background-color: #1b2c47; " +
-                "-fx-border-color: white;" +
-                " -fx-border-radius: 100%; " +
-                "-fx-text-fill: white;";
-
-        Button btnTwoPlayer = new Button("2 Player");
-        btnTwoPlayer.setPrefWidth(200);
+        Button btnTwoPlayer = createMenuButton("2 Player");
         vbMenuButtons.getChildren().add(btnTwoPlayer);
-        btnTwoPlayer.setStyle(sBtnStyle);
-        menuButtonAnimations(btnTwoPlayer);
 
-        btnTwoPlayer.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(new Scene(createBoard(), 813, 500));
-            }
-        });
-
-        Button btnRandom = new Button("Random Player");
-        btnRandom.setPrefWidth(200);
+        Button btnRandom = createMenuButton("Random Player");
         vbMenuButtons.getChildren().add(btnRandom);
-        btnRandom.setStyle(sBtnStyle);
-        menuButtonAnimations(btnRandom);
 
-        btnRandom.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(new Scene(createBoard(), 813, 500));
-            }
-        });
-
-        Button btnAI = new Button("AI Player");
-        btnAI.setPrefWidth(200);
+        Button btnAI = createMenuButton("AI Player");
         vbMenuButtons.getChildren().add(btnAI);
-        btnAI.setStyle(sBtnStyle);
-        menuButtonAnimations(btnAI);
-
-        btnAI.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(new Scene(createBoard(), 813, 500));
-            }
-        });
 
         root.setCenter(vbMenuButtons);
         return root;
@@ -129,26 +93,11 @@ public class OwareUI extends Application {
         vbHouseHolder.getChildren().add(hbPOneHouseHolder);
         vbHouseHolder.getChildren().add(hbPTwoHouseHolder);
 
-        final String sBtnStyle = "-fx-font-size: 18px; " +
-                "-fx-background-color: #1b2c47; " +
-                "-fx-border-color: white;" +
-                " -fx-border-radius: 100%; " +
-                "-fx-text-fill: white;" +
-                "-fx-background-radius: 5em; " +
-                "-fx-min-width: 100px; " +
-                "-fx-min-height: 100px; " +
-                "-fx-max-width: 100px; " +
-                "-fx-max-height: 100px;";
-
         for (int i = 0; i < 6; ++i) {
-            Button btnOneHouse = new Button("" + i);
-            btnOneHouse.setStyle(sBtnStyle);
-            houseButtonAnimations(btnOneHouse);
+            Button btnOneHouse = createHouseButton("" + i);
             hbPOneHouseHolder.getChildren().add(btnOneHouse);
 
-            Button btnTwoHouse = new Button("" + i);
-            btnTwoHouse.setStyle(sBtnStyle);
-            houseButtonAnimations(btnTwoHouse);
+            Button btnTwoHouse = createHouseButton("" + i);
             hbPTwoHouseHolder.getChildren().add(btnTwoHouse);
         }
 
@@ -266,8 +215,6 @@ public class OwareUI extends Application {
             }
         });
 
-
-
         Button btnEvenSpace = new Button("Menu");
         btnEvenSpace.setVisible(false);
         btnEvenSpace.setStyle("-fx-font-size: 18px; " +
@@ -281,6 +228,28 @@ public class OwareUI extends Application {
         root.setRight(hbEvenSpace);
 
         return root;
+    }
+
+    private Button createMenuButton(String text) {
+        final String sBtnStyle = "-fx-font-size: 18px; " +
+                "-fx-background-color: #1b2c47; " +
+                "-fx-border-color: white;" +
+                " -fx-border-radius: 100%; " +
+                "-fx-text-fill: white;";
+
+        Button button = new Button(text);
+        button.setPrefWidth(200);
+        button.setStyle(sBtnStyle);
+        menuButtonAnimations(button);
+
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(new Scene(createBoard(), 813, 500));
+            }
+        });
+
+        return button;
     }
 
     private void menuButtonAnimations(Button button) {
@@ -303,6 +272,25 @@ public class OwareUI extends Application {
                 button.setStyle(sBtnStyle);
             }
         });
+    }
+
+    private Button createHouseButton(String title) {
+        final String sBtnStyle = "-fx-font-size: 18px; " +
+                "-fx-background-color: #1b2c47; " +
+                "-fx-border-color: white;" +
+                " -fx-border-radius: 100%; " +
+                "-fx-text-fill: white;" +
+                "-fx-background-radius: 5em; " +
+                "-fx-min-width: 100px; " +
+                "-fx-min-height: 100px; " +
+                "-fx-max-width: 100px; " +
+                "-fx-max-height: 100px;";
+
+        Button button = new Button(title);
+        button.setStyle(sBtnStyle);
+        houseButtonAnimations(button);
+
+        return button;
     }
 
     private void houseButtonAnimations(Button button) {
