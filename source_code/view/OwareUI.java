@@ -242,6 +242,27 @@ public class OwareUI extends Application {
                         hbToMenu.getChildren().add(btnToMenu);
                     }
                 });
+
+                btnTwoPlayer.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                    }
+                });
+
+                btnRandom.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                    }
+                });
+
+                btnAI.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                    }
+                });
             }
         });
 
