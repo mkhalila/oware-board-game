@@ -33,19 +33,22 @@ public class Game {
 
         nextHouse %= 12;
         if(board.canCapture(nextHouse)) {
-            while ((house / 6 != (nextHouse) / 6) & (board.getHouseSeeds(nextHouse) == 2 || board.getHouseSeeds(nextHouse) == 3) ) {
-
+            while (
+                    //by the way i was totally wrong about & and &&, it works exactly the other way round =)
+                    /*new condition, could be done better probably*/(nextHouse>=0) &&
+                    (house / 6 != (nextHouse) / 6) && (board.getHouseSeeds(nextHouse) == 2 || board.getHouseSeeds(nextHouse) == 3) ) {
+                System.out.println("Capturing " + board.getHouseSeeds(nextHouse) + " seeds from house " + nextHouse);
                 if (isP1Turn) {
                     player1.increaseScore(board.getHouseSeeds(nextHouse));
                 } else {
                     player2.increaseScore(board.getHouseSeeds(nextHouse));
                 }
-
                 board.emptyHouse(nextHouse);
+                //this is where it goes to negative index
                 --nextHouse;
             }
         }
-
+        System.out.println("end of turn");
         isP1Turn = !isP1Turn;
 
     }
@@ -66,6 +69,17 @@ public class Game {
             } else{
                 return DRAW;
             }
+        }
+    }
+    
+    public void print(){
+        System.out.println("\t\tPlayer 2 (" + player2.getScore() + ")\n");
+        board.print();
+        System.out.println("\n\n\t\tPlayer 1 (" + player1.getScore() + ")");
+    }
+    
+    public boolean isPlayer1Turn(){
+        return isP1Turn;
     }
 
 
