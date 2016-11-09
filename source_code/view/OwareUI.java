@@ -207,22 +207,26 @@ public class OwareUI extends Application {
                         "-fx-text-fill: white;";
 
                 Button btnCloseSB = new Button("Close");
+                sidebarButtonAnimations(btnCloseSB);
                 btnCloseSB.setPrefWidth(114);
                 btnCloseSB.setStyle(sSideBarButtonStyle);
                 vbSidebar.getChildren().add(btnCloseSB);
 
                 Button btnTwoPlayer = new Button("2 Player");
+                sidebarButtonAnimations(btnTwoPlayer);
                 btnTwoPlayer.setPrefWidth(114);
                 btnTwoPlayer.setStyle(sSideBarButtonStyle);
                 vbSidebar.getChildren().add(btnTwoPlayer);
 
                 Button btnRandom = new Button("Random Player");
+                sidebarButtonAnimations(btnRandom);
                 btnRandom.setPrefWidth(114);
                 btnRandom.setStyle(sSideBarButtonStyle);
                 btnRandom.setAlignment(Pos.CENTER);
                 vbSidebar.getChildren().add(btnRandom);
 
                 Button btnAI = new Button("AI Player");
+                sidebarButtonAnimations(btnAI);
                 btnAI.setPrefWidth(114);
                 btnAI.setStyle(sSideBarButtonStyle);
                 vbSidebar.getChildren().add(btnAI);
@@ -300,6 +304,27 @@ public class OwareUI extends Application {
             @Override
             public void handle(MouseEvent event) {
                 button.setStyle(sBtnStyle);
+            }
+        });
+    }
+
+    private void sidebarButtonAnimations(Button button) {
+        final String sSideBarButtonStyle = "-fx-font-size: 14px; " +
+                "-fx-background-color: #1b2c47; " +
+                "-fx-text-fill: white;";
+
+
+        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                button.setStyle(sSideBarButtonStyle + "-fx-background-color: #1692cc");
+            }
+        });
+
+        button.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                button.setStyle(sSideBarButtonStyle);
             }
         });
     }
