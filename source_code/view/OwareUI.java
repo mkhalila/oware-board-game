@@ -233,10 +233,13 @@ public class OwareUI extends Application {
 
                 bpToMenu.setLeft(vbSidebar);
 
+                hbToMenu.getChildren().remove(btnToMenu);
+
                 btnCloseSB.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
                         bpToMenu.getChildren().remove(vbSidebar);
+                        hbToMenu.getChildren().add(btnToMenu);
                     }
                 });
             }
