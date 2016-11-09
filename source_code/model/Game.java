@@ -1,5 +1,6 @@
 package model;
 import java.lang.Math;
+import java.util.ArrayList;
 
 public class Game {
     private Board board;
@@ -80,6 +81,22 @@ public class Game {
     
     public boolean isPlayer1Turn(){
         return isP1Turn;
+    }
+    
+    public ArrayList<Integer> validHouses () {
+    	if(isP1Turn) {
+    		if(board.opponentHasSeeds(2)) {    			
+    			return board.getPlayer1Without0();
+    		} else {
+    			return board.getValidHouses(1);
+    		}
+    	} else {
+    		if(board.opponentHasSeeds(1)) {
+    			return board.getPlayer2Without0();
+    		} else {
+    			return board.getValidHouses(2);
+    		}
+    	}
     }
 
 
