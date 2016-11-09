@@ -99,6 +99,20 @@ public class Game {
     	}
     }
 
+	public void playersCaptureOwnSeeds() {
+		
+		for(int i: board.getPlayer1()) {
+			
+			player1.setScore(player1.getScore() + i);
+		}
+		
+		for(int i: board.getPlayer2())
+			player2.setScore(player2.getScore() + i);
+		
+		board.clear();
+		
+	}
+
 
 
 }

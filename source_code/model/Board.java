@@ -11,12 +11,10 @@ public class Board {
 		player2 = new ArrayList<Integer>(6);
 
 		for (int i = 0; i < 6; ++i) {
-			/*
-			 * player1[i] = 4; player2[i] = 4;
-			 */
-			player1.add(0);
+			player1.add(4);
 			player2.add(4);
 		}
+		
 	}
 
 	public ArrayList<Integer> getPlayer1() {
@@ -179,6 +177,14 @@ public class Board {
 		}
 		
 		return validHouses;
+	}
+
+	public void clear() {
+		for(int i = 0; i < 6; ++i) {
+			player1.set(i, 0);
+			player2.set(i, 0);
+		}
+		
 	}
 
 }
