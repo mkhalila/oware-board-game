@@ -1,10 +1,8 @@
 package view;
 
-import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,9 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
-import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 /**
  * Created by mkhal on 06/11/2016.
@@ -53,9 +49,8 @@ public class OwareUI extends Application {
         root.setTop(hbTitlePane);
         root.setAlignment(hbTitlePane, Pos.CENTER);
 
-        VBox vbMenuButtons = new VBox();
+        VBox vbMenuButtons = new VBox(10);
         vbMenuButtons.setAlignment(Pos.CENTER);
-        vbMenuButtons.setSpacing(10);
 
         Button btnTwoPlayer = createMenuButton("2 Player");
         vbMenuButtons.getChildren().add(btnTwoPlayer);
@@ -78,16 +73,13 @@ public class OwareUI extends Application {
         root.setCenter(bpGameBoard);
         bpGameBoard.setStyle("-fx-background-color: #1b2c47");
 
-        VBox vbHouseHolder = new VBox();
+        VBox vbHouseHolder = new VBox(20);
         vbHouseHolder.setAlignment(Pos.CENTER);
-        vbHouseHolder.setSpacing(20);
 
-        HBox hbPOneHouseHolder = new HBox();
-        hbPOneHouseHolder.setSpacing(10);
+        HBox hbPOneHouseHolder = new HBox(10);
         hbPOneHouseHolder.setAlignment(Pos.CENTER);
 
-        HBox hbPTwoHouseHolder = new HBox();
-        hbPTwoHouseHolder.setSpacing(10);
+        HBox hbPTwoHouseHolder = new HBox(10);
         hbPTwoHouseHolder.setAlignment(Pos.CENTER);
 
         vbHouseHolder.getChildren().add(hbPOneHouseHolder);
@@ -128,11 +120,9 @@ public class OwareUI extends Application {
         btnToMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //primaryStage.setScene(mainMenu);
-                VBox vbSidebar = new VBox();
+                VBox vbSidebar = new VBox(5);
                 vbSidebar.setFillWidth(true);
                 vbSidebar.setStyle("-fx-padding: 5px; -fx-background-color: white");
-                vbSidebar.setSpacing(5);
 
                 final String sSideBarButtonStyle = "-fx-font-size: 14px; " +
                         "-fx-background-color: #1b2c47; " +
