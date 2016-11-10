@@ -22,12 +22,25 @@ public class TwoPlayerController implements EventHandler{
     public void handle(Event event) {
         Button source = (Button) event.getSource();
 
-        Player p1 = new Player();
-        Player p2 = new Player();
-        game = new Game(p1, p2);
+        if (source.getText().equals("2 Player")) {
+            Player p1 = new Player();
+            Player p2 = new Player();
+            game = new Game(p1, p2);
 
-        for (int i : game.validHouses()) {
-            view.enableHouse(i);
+            for (int i : game.validHouses()) {
+                view.enableHouse(i);
+            }
+        }
+
+        boolean isHouseButton = false;
+        try {
+            Integer.parseInt(source.getId());
+            isHouseButton = true;
+        } catch (NumberFormatException e) {}
+
+        if (isHouseButton) {
+            game.makeMove(Integer.parseInt(source.getId()));
+            game.print();
         }
     }
 }

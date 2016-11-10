@@ -23,12 +23,15 @@ public class OwareUI extends Application {
     private HBox hbPTwoHouseHolder;
     private Button btnTwoPlayer;
     private Pane board;
+    private TwoPlayerController twoPController;
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Oware");
+
+        twoPController = new TwoPlayerController(this);
 
         mainMenu = new Scene(createMainMenu(primaryStage), 830, 500);
 
@@ -59,7 +62,7 @@ public class OwareUI extends Application {
         Button btnRandom = createMenuButton("Random Player");
         Button btnAI = createMenuButton("AI Player");
 
-        btnTwoPlayer.setOnAction(new TwoPlayerController(this));
+        btnTwoPlayer.setOnAction(twoPController);
 
         vbMenuButtons.getChildren().addAll(btnTwoPlayer, btnRandom, btnAI);
 
@@ -238,6 +241,7 @@ public class OwareUI extends Application {
 
         Button button = new Button(title);
         button.setStyle(sBtnStyle);
+        button.setOnAction(twoPController);
 
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
