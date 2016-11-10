@@ -1,5 +1,6 @@
 package view;
 
+import controller.TwoPlayerController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -47,6 +48,7 @@ public class OwareUI extends Application {
         vbMenuButtons.setAlignment(Pos.CENTER);
 
         Button btnTwoPlayer = createMenuButton("2 Player");
+        btnTwoPlayer.setOnAction(new TwoPlayerController());
         Button btnRandom = createMenuButton("Random Player");
         Button btnAI = createMenuButton("AI Player");
 
