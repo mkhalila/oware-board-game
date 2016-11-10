@@ -16,9 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
 
-/**
- * Created by mkhal on 06/11/2016.
- */
 public class OwareUI extends Application {
     Scene mainMenu;
     Stage primaryStage;
@@ -194,7 +191,6 @@ public class OwareUI extends Application {
         Button button = new Button(text);
         button.setPrefWidth(200);
         button.setStyle(sBtnStyle);
-        menuButtonAnimations(button);
 
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -203,16 +199,6 @@ public class OwareUI extends Application {
                 primaryStage.setTitle("Oware: " + button.getText());
             }
         });
-
-        return button;
-    }
-
-    private void menuButtonAnimations(Button button) {
-        final String sBtnStyle = "-fx-font-size: 18px; " +
-                "-fx-background-color: #1b2c47; " +
-                "-fx-border-color: white;" +
-                " -fx-border-radius: 100%; " +
-                "-fx-text-fill: white;";
 
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -227,6 +213,8 @@ public class OwareUI extends Application {
                 button.setStyle(sBtnStyle);
             }
         });
+
+        return button;
     }
 
     private Button createHouseButton(String title) {
@@ -243,22 +231,6 @@ public class OwareUI extends Application {
 
         Button button = new Button(title);
         button.setStyle(sBtnStyle);
-        houseButtonAnimations(button);
-
-        return button;
-    }
-
-    private void houseButtonAnimations(Button button) {
-        final String sBtnStyle = "-fx-font-size: 18px; " +
-                "-fx-background-color: #1b2c47; " +
-                "-fx-border-color: white;" +
-                " -fx-border-radius: 100%; " +
-                "-fx-text-fill: white;" +
-                "-fx-background-radius: 5em; " +
-                "-fx-min-width: 100px; " +
-                "-fx-min-height: 100px; " +
-                "-fx-max-width: 100px; " +
-                "-fx-max-height: 100px;";
 
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -273,6 +245,8 @@ public class OwareUI extends Application {
                 button.setStyle(sBtnStyle);
             }
         });
+
+        return button;
     }
 
     private Arc createScoreArc(double angleIn) {
@@ -289,17 +263,8 @@ public class OwareUI extends Application {
                 "-fx-text-fill: white;";
 
         Button button = new Button(text);
-        sidebarButtonAnimations(button);
         button.setPrefWidth(114);
         button.setStyle(sSideBarButtonStyle);
-
-        return button;
-    }
-    private void sidebarButtonAnimations(Button button) {
-        final String sSideBarButtonStyle = "-fx-font-size: 14px; " +
-                "-fx-background-color: #1b2c47; " +
-                "-fx-text-fill: white;";
-
 
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -314,5 +279,8 @@ public class OwareUI extends Application {
                 button.setStyle(sSideBarButtonStyle);
             }
         });
+
+        return button;
     }
+
 }
