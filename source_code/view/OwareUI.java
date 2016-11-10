@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,9 +16,14 @@ import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
 
 public class OwareUI extends Application {
-    Scene mainMenu;
-    Stage primaryStage;
-    BorderPane bpGameBoard;
+    private Scene mainMenu;
+    private Stage primaryStage;
+    private BorderPane bpGameBoard;
+    private HBox hbPOneHouseHolder;
+    private HBox hbPTwoHouseHolder;
+    private Button btnTwoPlayer;
+    private Pane board;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -25,6 +31,8 @@ public class OwareUI extends Application {
         primaryStage.setTitle("Oware");
 
         mainMenu = new Scene(createMainMenu(primaryStage), 830, 500);
+
+        board = createBoard();
         primaryStage.setScene(mainMenu);
 
         primaryStage.show();
@@ -47,10 +55,11 @@ public class OwareUI extends Application {
         VBox vbMenuButtons = new VBox(10);
         vbMenuButtons.setAlignment(Pos.CENTER);
 
-        Button btnTwoPlayer = createMenuButton("2 Player");
-        btnTwoPlayer.setOnAction(new TwoPlayerController());
+        btnTwoPlayer = createMenuButton("2 Player");
         Button btnRandom = createMenuButton("Random Player");
         Button btnAI = createMenuButton("AI Player");
+
+        btnTwoPlayer.setOnAction(new TwoPlayerController(this));
 
         vbMenuButtons.getChildren().addAll(btnTwoPlayer, btnRandom, btnAI);
 
@@ -69,17 +78,17 @@ public class OwareUI extends Application {
         VBox vbHouseHolder = new VBox(20);
         vbHouseHolder.setAlignment(Pos.CENTER);
 
-        HBox hbPOneHouseHolder = new HBox(10);
+        hbPOneHouseHolder = new HBox(10);
         hbPOneHouseHolder.setAlignment(Pos.CENTER);
 
-        HBox hbPTwoHouseHolder = new HBox(10);
+        hbPTwoHouseHolder = new HBox(10);
         hbPTwoHouseHolder.setAlignment(Pos.CENTER);
 
         vbHouseHolder.getChildren().addAll(hbPTwoHouseHolder, hbPOneHouseHolder);
 
         for (int i = 0; i < 6; ++i) {
             Button btnOneHouse = createHouseButton("");
-            btnOneHouse.setId("i");
+            btnOneHouse.setId("" + i);
             btnOneHouse.setDisable(true);
             hbPOneHouseHolder.getChildren().add(btnOneHouse);
 
@@ -87,7 +96,7 @@ public class OwareUI extends Application {
 
         for (int i = 6; i < 12; ++i) {
             Button btnTwoHouse = createHouseButton("");
-            btnTwoHouse.setId("i");
+            btnTwoHouse.setId("" + i);
             btnTwoHouse.setDisable(true);
             hbPTwoHouseHolder.getChildren().add(btnTwoHouse);
         }
@@ -193,7 +202,7 @@ public class OwareUI extends Application {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(new Scene(createBoard(), 830, 500));
+                primaryStage.setScene(new Scene(board, 830, 500));
                 primaryStage.setTitle("Oware: " + button.getText());
             }
         });
@@ -285,6 +294,18 @@ public class OwareUI extends Application {
         });
 
         return button;
+    }
+
+    public void enableHouse(int houseIn) {
+        if ((houseIn >= 0) || (houseIn < 6)) {
+            for (Node b : hbPOneHouseHolder.getChildren()) {
+                if (houseIn == Integer.parseInt(b.getId())) b.setDisable(false);
+            }
+        } else {
+            for (Node b : hbPTwoHouseHolder.getChildren()) {
+                if (houseIn == Integer.parseInt(b.getId())) b.setDisable(false);
+            }
+        }
     }
 
 }

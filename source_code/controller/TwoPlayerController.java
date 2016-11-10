@@ -14,6 +14,10 @@ public class TwoPlayerController implements EventHandler{
     private Game game;
     private OwareUI view;
 
+    public TwoPlayerController(OwareUI viewIn) {
+        view = viewIn;
+    }
+
     @Override
     public void handle(Event event) {
         Button source = (Button) event.getSource();
@@ -23,7 +27,7 @@ public class TwoPlayerController implements EventHandler{
         game = new Game(p1, p2);
 
         for (int i : game.validHouses()) {
-            System.out.println(i);
+            view.enableHouse(i);
         }
     }
 }
