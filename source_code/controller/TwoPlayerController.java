@@ -39,8 +39,10 @@ public class TwoPlayerController implements EventHandler{
         } catch (NumberFormatException e) {}
 
         if (isHouseButton) {
-            game.makeMove(Integer.parseInt(source.getId()));
-            game.print();
+            if(!game.checkScores()) {
+                game.makeMove(Integer.parseInt(source.getId()));
+                game.print();
+            }
         }
     }
 }
