@@ -77,12 +77,17 @@ public class OwareUI extends Application {
 
         vbHouseHolder.getChildren().addAll(hbPTwoHouseHolder, hbPOneHouseHolder);
 
-        for (int i = 1; i < 7; ++i) {
-            Button btnOneHouse = createHouseButton("" + i);
+        for (int i = 0; i < 6; ++i) {
+            Button btnOneHouse = createHouseButton("");
+            btnOneHouse.setId("i");
             btnOneHouse.setDisable(true);
             hbPOneHouseHolder.getChildren().add(btnOneHouse);
 
-            Button btnTwoHouse = createHouseButton("" + i);
+        }
+
+        for (int i = 6; i < 12; ++i) {
+            Button btnTwoHouse = createHouseButton("");
+            btnTwoHouse.setId("i");
             btnTwoHouse.setDisable(true);
             hbPTwoHouseHolder.getChildren().add(btnTwoHouse);
         }
