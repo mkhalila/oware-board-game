@@ -103,25 +103,13 @@ public class OwareUI extends Application {
 
         bpGameBoard.setCenter(vbHouseHolder);
 
-        Arc arcOneScore = new Arc();
-        arcOneScore.setRadiusX(200);
-        arcOneScore.setRadiusY(100);
-        arcOneScore.setStartAngle(0.0f);
-        arcOneScore.setLength(180.0f);
-        arcOneScore.setFill(Color.valueOf("#1b2c47"));
-        arcOneScore.setStroke(Color.WHITE);
+        Arc arcOneScore = createScoreArc(0);
 
         HBox hbArcOne = new HBox(arcOneScore);
         hbArcOne.setAlignment(Pos.CENTER);
         bpGameBoard.setBottom(hbArcOne);
 
-        Arc arcTwoScore = new Arc();
-        arcTwoScore.setRadiusX(200);
-        arcTwoScore.setRadiusY(100);
-        arcTwoScore.setStartAngle(180.0f);
-        arcTwoScore.setLength(180.0f);
-        arcTwoScore.setFill(Color.valueOf("#1b2c47"));
-        arcTwoScore.setStroke(Color.WHITE);
+        Arc arcTwoScore = createScoreArc(180);
 
         HBox hbArcTwo = new HBox(arcTwoScore);
         hbArcTwo.setAlignment(Pos.CENTER);
@@ -213,13 +201,8 @@ public class OwareUI extends Application {
             }
         });
 
-        Button btnEvenSpace = new Button("Menu");
+        Button btnEvenSpace = createMenuButton("Menu");
         btnEvenSpace.setVisible(false);
-        btnEvenSpace.setStyle("-fx-font-size: 18px; " +
-                "-fx-background-color: #1b2c47; " +
-                "-fx-border-color: white;" +
-                " -fx-border-radius: 100%; " +
-                "-fx-text-fill: white;");
 
         HBox hbEvenSpace = new HBox(btnEvenSpace);
         hbEvenSpace.setStyle("-fx-padding: 5px");
@@ -317,6 +300,14 @@ public class OwareUI extends Application {
                 button.setStyle(sBtnStyle);
             }
         });
+    }
+
+    private Arc createScoreArc(double angleIn) {
+        Arc arc = new Arc(0, 0, 200, 100, angleIn, 180.0f);
+        arc.setFill(Color.valueOf("#1b2c47"));
+        arc.setStroke(Color.WHITE);
+
+        return arc;
     }
 
     private void sidebarButtonAnimations(Button button) {
