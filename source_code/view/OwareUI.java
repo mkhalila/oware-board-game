@@ -8,10 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
@@ -26,7 +23,7 @@ public class OwareUI extends Application {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Oware");
 
-        mainMenu = new Scene(createMainMenu(primaryStage), 813, 500);
+        mainMenu = new Scene(createMainMenu(primaryStage), 830, 500);
         primaryStage.setScene(mainMenu);
 
         primaryStage.show();
@@ -92,15 +89,15 @@ public class OwareUI extends Application {
 
         bpGameBoard.setCenter(vbHouseHolder);
 
-        Arc arcOneScore = createScoreArc(0);
+        StackPane spScoreOne = createScoreArc(0);
 
-        HBox hbArcOne = new HBox(arcOneScore);
+        HBox hbArcOne = new HBox(spScoreOne);
         hbArcOne.setAlignment(Pos.CENTER);
         bpGameBoard.setBottom(hbArcOne);
 
-        Arc arcTwoScore = createScoreArc(180);
+        StackPane spScoreTwo = createScoreArc(180);
 
-        HBox hbArcTwo = new HBox(arcTwoScore);
+        HBox hbArcTwo = new HBox(spScoreTwo);
         hbArcTwo.setAlignment(Pos.CENTER);
         bpGameBoard.setTop(hbArcTwo);
 
@@ -148,7 +145,7 @@ public class OwareUI extends Application {
                 btnTwoPlayer.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                        primaryStage.setScene(new Scene(createBoard(), 830, 500));
                         primaryStage.setTitle("Oware: Two Player");
                     }
                 });
@@ -156,7 +153,7 @@ public class OwareUI extends Application {
                 btnRandom.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                        primaryStage.setScene(new Scene(createBoard(), 830, 500));
                         primaryStage.setTitle("Oware: Random Player");
                     }
                 });
@@ -164,7 +161,7 @@ public class OwareUI extends Application {
                 btnAI.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                        primaryStage.setScene(new Scene(createBoard(), 830, 500));
                         primaryStage.setTitle("Oware: AI Player");
                     }
                 });
@@ -172,6 +169,7 @@ public class OwareUI extends Application {
         });
 
         Button btnEvenSpace = createMenuButton("Menu");
+        btnEvenSpace.setPrefWidth(80);
         btnEvenSpace.setVisible(false);
 
         HBox hbEvenSpace = new HBox(btnEvenSpace);
@@ -195,7 +193,7 @@ public class OwareUI extends Application {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                primaryStage.setScene(new Scene(createBoard(), 830, 500));
                 primaryStage.setTitle("Oware: " + button.getText());
             }
         });
@@ -218,7 +216,7 @@ public class OwareUI extends Application {
     }
 
     private Button createHouseButton(String title) {
-        final String sBtnStyle = "-fx-font-size: 18px; " +
+        final String sBtnStyle = "-fx-font-size: 20px; " +
                 "-fx-background-color: #1b2c47; " +
                 "-fx-border-color: white;" +
                 " -fx-border-radius: 100%; " +
@@ -249,12 +247,18 @@ public class OwareUI extends Application {
         return button;
     }
 
-    private Arc createScoreArc(double angleIn) {
+    private StackPane createScoreArc(double angleIn) {
         Arc arc = new Arc(0, 0, 200, 100, angleIn, 180.0f);
         arc.setFill(Color.valueOf("#1b2c47"));
         arc.setStroke(Color.WHITE);
 
-        return arc;
+        Label lblScore = new Label("0");
+        lblScore.setStyle("-fx-text-fill: white; -fx-font-size: 20px");
+        
+        StackPane stackPane = new StackPane(arc);
+        stackPane.getChildren().add(lblScore);
+
+        return stackPane;
     }
 
     private Button createSidebarButtons(String text) {
