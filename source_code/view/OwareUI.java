@@ -79,9 +79,11 @@ public class OwareUI extends Application {
 
         for (int i = 1; i < 7; ++i) {
             Button btnOneHouse = createHouseButton("" + i);
+            btnOneHouse.setDisable(true);
             hbPOneHouseHolder.getChildren().add(btnOneHouse);
 
             Button btnTwoHouse = createHouseButton("" + i);
+            btnTwoHouse.setDisable(true);
             hbPTwoHouseHolder.getChildren().add(btnTwoHouse);
         }
 
