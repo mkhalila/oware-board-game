@@ -127,13 +127,8 @@ public class OwareUI extends Application {
         hbArcTwo.setAlignment(Pos.CENTER);
         bpGameBoard.setTop(hbArcTwo);
 
-        Button btnToMenu = new Button("Menu");
-        menuButtonAnimations(btnToMenu);
-        btnToMenu.setStyle("-fx-font-size: 18px; " +
-                "-fx-background-color: #1b2c47; " +
-                "-fx-border-color: white;" +
-                " -fx-border-radius: 100%; " +
-                "-fx-text-fill: white;");
+        Button btnToMenu = createMenuButton("Menu");
+        btnToMenu.setPrefWidth(80);
 
         BorderPane bpToMenu = new BorderPane();
 
@@ -196,6 +191,7 @@ public class OwareUI extends Application {
                     @Override
                     public void handle(ActionEvent event) {
                         primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                        primaryStage.setTitle("Oware: Two Player");
                     }
                 });
 
@@ -203,6 +199,7 @@ public class OwareUI extends Application {
                     @Override
                     public void handle(ActionEvent event) {
                         primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                        primaryStage.setTitle("Oware: Random Player");
                     }
                 });
 
@@ -210,6 +207,7 @@ public class OwareUI extends Application {
                     @Override
                     public void handle(ActionEvent event) {
                         primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                        primaryStage.setTitle("Oware: AI Player");
                     }
                 });
             }
@@ -246,6 +244,7 @@ public class OwareUI extends Application {
             @Override
             public void handle(MouseEvent event) {
                 primaryStage.setScene(new Scene(createBoard(), 813, 500));
+                primaryStage.setTitle("Oware: " + button.getText());
             }
         });
 
