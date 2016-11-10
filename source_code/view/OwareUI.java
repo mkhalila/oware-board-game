@@ -47,13 +47,10 @@ public class OwareUI extends Application {
         vbMenuButtons.setAlignment(Pos.CENTER);
 
         Button btnTwoPlayer = createMenuButton("2 Player");
-        vbMenuButtons.getChildren().add(btnTwoPlayer);
-
         Button btnRandom = createMenuButton("Random Player");
-        vbMenuButtons.getChildren().add(btnRandom);
-
         Button btnAI = createMenuButton("AI Player");
-        vbMenuButtons.getChildren().add(btnAI);
+
+        vbMenuButtons.getChildren().addAll(btnTwoPlayer, btnRandom, btnAI);
 
         root.setCenter(vbMenuButtons);
         return root;
@@ -76,10 +73,9 @@ public class OwareUI extends Application {
         HBox hbPTwoHouseHolder = new HBox(10);
         hbPTwoHouseHolder.setAlignment(Pos.CENTER);
 
-        vbHouseHolder.getChildren().add(hbPOneHouseHolder);
-        vbHouseHolder.getChildren().add(hbPTwoHouseHolder);
+        vbHouseHolder.getChildren().addAll(hbPTwoHouseHolder, hbPOneHouseHolder);
 
-        for (int i = 0; i < 6; ++i) {
+        for (int i = 1; i < 7; ++i) {
             Button btnOneHouse = createHouseButton("" + i);
             hbPOneHouseHolder.getChildren().add(btnOneHouse);
 
@@ -119,16 +115,11 @@ public class OwareUI extends Application {
                 vbSidebar.setStyle("-fx-padding: 5px; -fx-background-color: white");
 
                 Button btnCloseSB = createSidebarButtons("Close");
-                vbSidebar.getChildren().add(btnCloseSB);
-
                 Button btnTwoPlayer = createSidebarButtons("2 Player");
-                vbSidebar.getChildren().add(btnTwoPlayer);
-
                 Button btnRandom = createSidebarButtons("Random Player");
-                vbSidebar.getChildren().add(btnRandom);
-
                 Button btnAI = createSidebarButtons("AI Player");
-                vbSidebar.getChildren().add(btnAI);
+
+                vbSidebar.getChildren().addAll(btnCloseSB, btnTwoPlayer, btnRandom, btnAI);
 
                 bpToMenu.setLeft(vbSidebar);
 
