@@ -1,7 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 
-public class Player {
+public abstract class Player {
 
     private int score;
 
@@ -17,7 +18,7 @@ public class Player {
         this.score = score;
     }
 
-    public void makeMove (int house){}
+    public abstract int nextMove(ArrayList<Integer> validHouses);
 
     public void increaseScore(int houseSeeds) {
         score += houseSeeds;
