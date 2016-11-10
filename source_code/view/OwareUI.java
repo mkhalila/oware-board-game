@@ -124,33 +124,16 @@ public class OwareUI extends Application {
                 vbSidebar.setFillWidth(true);
                 vbSidebar.setStyle("-fx-padding: 5px; -fx-background-color: white");
 
-                final String sSideBarButtonStyle = "-fx-font-size: 14px; " +
-                        "-fx-background-color: #1b2c47; " +
-                        "-fx-text-fill: white;";
-
-                Button btnCloseSB = new Button("Close");
-                sidebarButtonAnimations(btnCloseSB);
-                btnCloseSB.setPrefWidth(114);
-                btnCloseSB.setStyle(sSideBarButtonStyle);
+                Button btnCloseSB = createSidebarButtons("Close");
                 vbSidebar.getChildren().add(btnCloseSB);
 
-                Button btnTwoPlayer = new Button("2 Player");
-                sidebarButtonAnimations(btnTwoPlayer);
-                btnTwoPlayer.setPrefWidth(114);
-                btnTwoPlayer.setStyle(sSideBarButtonStyle);
+                Button btnTwoPlayer = createSidebarButtons("2 Player");
                 vbSidebar.getChildren().add(btnTwoPlayer);
 
-                Button btnRandom = new Button("Random Player");
-                sidebarButtonAnimations(btnRandom);
-                btnRandom.setPrefWidth(114);
-                btnRandom.setStyle(sSideBarButtonStyle);
-                btnRandom.setAlignment(Pos.CENTER);
+                Button btnRandom = createSidebarButtons("Random Player");
                 vbSidebar.getChildren().add(btnRandom);
 
-                Button btnAI = new Button("AI Player");
-                sidebarButtonAnimations(btnAI);
-                btnAI.setPrefWidth(114);
-                btnAI.setStyle(sSideBarButtonStyle);
+                Button btnAI = createSidebarButtons("AI Player");
                 vbSidebar.getChildren().add(btnAI);
 
                 bpToMenu.setLeft(vbSidebar);
@@ -300,6 +283,18 @@ public class OwareUI extends Application {
         return arc;
     }
 
+    private Button createSidebarButtons(String text) {
+        final String sSideBarButtonStyle = "-fx-font-size: 14px; " +
+                "-fx-background-color: #1b2c47; " +
+                "-fx-text-fill: white;";
+
+        Button button = new Button(text);
+        sidebarButtonAnimations(button);
+        button.setPrefWidth(114);
+        button.setStyle(sSideBarButtonStyle);
+
+        return button;
+    }
     private void sidebarButtonAnimations(Button button) {
         final String sSideBarButtonStyle = "-fx-font-size: 14px; " +
                 "-fx-background-color: #1b2c47; " +
