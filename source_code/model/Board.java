@@ -183,7 +183,7 @@ public class Board {
 		ArrayList<Integer> validHouses = new ArrayList<Integer> ();
 		for(int i = 0; i < player2.size(); ++i) {
 			if(player2.get(i) != 0) {
-				validHouses.add(i);
+				validHouses.add(i+6);
 			}
 		}
 		
