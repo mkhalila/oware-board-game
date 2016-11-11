@@ -97,7 +97,7 @@ public class OwareUI extends Application {
 
         }
 
-        for (int i = 5; i > -1; --i) {
+        for (int i =11; i > 5; --i) {
             Button btnTwoHouse = createHouseButton("");
             btnTwoHouse.setId("" + i);
             btnTwoHouse.setDisable(true);

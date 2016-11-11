@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import model.Game;
+import model.HumanPlayer;
 import model.Player;
 import view.OwareUI;
 
@@ -24,8 +25,8 @@ public class TwoPlayerController implements EventHandler {
         Button source = (Button) event.getSource();
 
         if (source.getText().equals("2 Player")) {
-            p1 = new Player();
-            p2 = new Player();
+            p1 = new HumanPlayer();
+            p2 = new HumanPlayer();
             game = new Game(p1, p2);
 
             validateHouses();
@@ -47,7 +48,7 @@ public class TwoPlayerController implements EventHandler {
                 if (game.isPlayer1Turn())
                     game.makeMove(Integer.parseInt(source.getId()));
                 else
-                    game.makeMove(Integer.parseInt(source.getId())+6);
+                    game.makeMove(Integer.parseInt(source.getId()));
                 validateHouses();
                 updateHouses();
                 view.updateScores(p1.getScore(), p2.getScore());
@@ -65,8 +66,8 @@ public class TwoPlayerController implements EventHandler {
             view.updateHouseP1(i, game.getPlayer1().get(i));
         }
 
-        for (int i = 0; i < game.getPlayer2().size(); ++i) {
-            view.updateHouseP2(i, game.getPlayer2().get(i));
+        for (int i = 6; i < 12; ++i) {
+            view.updateHouseP2(i, game.getPlayer2().get(i-6));
         }
     }
 
