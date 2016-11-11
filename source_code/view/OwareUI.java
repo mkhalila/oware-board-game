@@ -352,4 +352,18 @@ public class OwareUI extends Application {
         }
     }
 
+    public void gameOver(int winner) {
+        hbPOneHouseHolder.getChildren().removeAll();
+        hbPTwoHouseHolder.getChildren().removeAll();
+        hbPOneHouseHolder.getChildren().add(new Label("Game over"));
+
+        if (winner == 1)
+            hbPTwoHouseHolder.getChildren().add(new Label("Player 1 Wins!"));
+        else if (winner == 2)
+            hbPTwoHouseHolder.getChildren().add(new Label("Player 2 Wins!"));
+        else
+            hbPTwoHouseHolder.getChildren().add(new Label("Draw!"));
+
+    }
+
 }
