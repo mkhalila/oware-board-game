@@ -13,6 +13,7 @@ import view.OwareUI;
 public class TwoPlayerController implements EventHandler {
     private Game game;
     private OwareUI view;
+    private Player p1, p2;
 
     public TwoPlayerController(OwareUI viewIn) {
         view = viewIn;
@@ -23,13 +24,14 @@ public class TwoPlayerController implements EventHandler {
         Button source = (Button) event.getSource();
 
         if (source.getText().equals("2 Player")) {
-            Player p1 = new Player();
-            Player p2 = new Player();
+            p1 = new Player();
+            p2 = new Player();
             game = new Game(p1, p2);
 
             validateHouses();
 
-            updateView();
+            updateHouses();
+            view.updateScores(p1.getScore(), p2.getScore());
         }
 
         boolean isHouseButton = false;
@@ -47,13 +49,14 @@ public class TwoPlayerController implements EventHandler {
                 else
                     game.makeMove(Integer.parseInt(source.getId())+6);
                 validateHouses();
-                updateView();
+                updateHouses();
+                view.updateScores(p1.getScore(), p2.getScore());
                 game.print();
             }
         }
     }
 
-    private void updateView() {
+    private void updateHouses() {
         for (int i = 0; i < game.getPlayer1().size(); ++i) {
             view.updateHouseP1(i, game.getPlayer1().get(i));
         }

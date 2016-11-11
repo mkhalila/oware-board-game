@@ -24,7 +24,7 @@ public class OwareUI extends Application {
     private Button btnTwoPlayer;
     private Pane board;
     private TwoPlayerController twoPController;
-
+    private Label lblP1Score, lblP2Score;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -106,13 +106,15 @@ public class OwareUI extends Application {
 
         bpGameBoard.setCenter(vbHouseHolder);
 
-        StackPane spScoreOne = createScoreArc(0);
+        lblP1Score = new Label("0");
+        StackPane spScoreOne = createScoreArc(0, lblP1Score);
 
         HBox hbArcOne = new HBox(spScoreOne);
         hbArcOne.setAlignment(Pos.CENTER);
         bpGameBoard.setBottom(hbArcOne);
 
-        StackPane spScoreTwo = createScoreArc(180);
+        lblP2Score = new Label("0");
+        StackPane spScoreTwo = createScoreArc(180, lblP2Score);
 
         HBox hbArcTwo = new HBox(spScoreTwo);
         hbArcTwo.setAlignment(Pos.CENTER);
@@ -260,12 +262,11 @@ public class OwareUI extends Application {
         return button;
     }
 
-    private StackPane createScoreArc(double angleIn) {
+    private StackPane createScoreArc(double angleIn, Label lblScore) {
         Arc arc = new Arc(0, 0, 200, 100, angleIn, 180.0f);
         arc.setFill(Color.valueOf("#1b2c47"));
         arc.setStroke(Color.WHITE);
 
-        Label lblScore = new Label("0");
         lblScore.setStyle("-fx-text-fill: white; -fx-font-size: 20px");
         
         StackPane stackPane = new StackPane(arc);
@@ -332,6 +333,11 @@ public class OwareUI extends Application {
                 btn.setText(""+ value);
             }
         }
+    }
+
+    public void updateScores(int scoreP1, int scoreP2) {
+        lblP1Score.setText("" + scoreP1);
+        lblP2Score.setText("" + scoreP2);
     }
 
     public void disableAllP1() {
