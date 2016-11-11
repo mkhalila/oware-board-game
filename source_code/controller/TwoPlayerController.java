@@ -54,6 +54,10 @@ public class TwoPlayerController implements EventHandler {
                 game.print();
             }
         }
+
+        if (game.checkScores()) {
+            System.out.println("Game over");
+        }
     }
 
     private void updateHouses() {
