@@ -31,13 +31,7 @@ public class TwoPlayerController implements EventHandler{
                 view.enableHouse(i);
             }
 
-            for (int i = 0; i < game.getPlayer1().size(); ++i) {
-                view.updateHouseP1(i, game.getPlayer1().get(i));
-            }
-
-            for (int i = 0; i < game.getPlayer2().size(); ++i) {
-                view.updateHouseP2(i, game.getPlayer2().get(i));
-            }
+            updateView();
         }
 
         boolean isHouseButton = false;
@@ -49,8 +43,19 @@ public class TwoPlayerController implements EventHandler{
         if (isHouseButton) {
             if(!game.checkScores()) {
                 game.makeMove(Integer.parseInt(source.getId()));
+                updateView();
                 game.print();
             }
+        }
+    }
+
+    private void updateView() {
+        for (int i = 0; i < game.getPlayer1().size(); ++i) {
+            view.updateHouseP1(i, game.getPlayer1().get(i));
+        }
+
+        for (int i = 0; i < game.getPlayer2().size(); ++i) {
+            view.updateHouseP2(i, game.getPlayer2().get(i));
         }
     }
 }
