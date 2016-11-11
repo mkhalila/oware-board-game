@@ -30,6 +30,14 @@ public class TwoPlayerController implements EventHandler{
             for (int i : game.validHouses()) {
                 view.enableHouse(i);
             }
+
+            for (int i = 0; i < game.getPlayer1().size(); ++i) {
+                view.updateHouseP1(i, game.getPlayer1().get(i));
+            }
+
+            for (int i = 0; i < game.getPlayer2().size(); ++i) {
+                view.updateHouseP2(i, game.getPlayer2().get(i));
+            }
         }
 
         boolean isHouseButton = false;

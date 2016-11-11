@@ -97,7 +97,7 @@ public class OwareUI extends Application {
 
         }
 
-        for (int i = 6; i < 12; ++i) {
+        for (int i = 5; i > -1; --i) {
             Button btnTwoHouse = createHouseButton("");
             btnTwoHouse.setId("" + i);
             btnTwoHouse.setDisable(true);
@@ -308,6 +308,24 @@ public class OwareUI extends Application {
         } else {
             for (Node b : hbPTwoHouseHolder.getChildren()) {
                 if (houseIn == Integer.parseInt(b.getId())) b.setDisable(false);
+            }
+        }
+    }
+
+    public void updateHouseP1(int houseID, int value) {
+        for (Node b : hbPOneHouseHolder.getChildren()) {
+            if (Integer.parseInt(b.getId()) == houseID) {
+                Button btn = (Button) b;
+                btn.setText(""+ value);
+            }
+        }
+    }
+
+    public void updateHouseP2(int houseID, int value) {
+        for (Node b : hbPTwoHouseHolder.getChildren()) {
+            if (Integer.parseInt(b.getId()) == houseID) {
+                Button btn = (Button) b;
+                btn.setText(""+ value);
             }
         }
     }

@@ -113,6 +113,12 @@ public class Game {
 		
 	}
 
+	public ArrayList<Integer> getPlayer1() {
+        return board.getPlayer1();
+    }
 
+    public ArrayList<Integer> getPlayer2() {
+        return board.getPlayer2();
+    }
 
 }
