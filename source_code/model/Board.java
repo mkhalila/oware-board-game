@@ -24,6 +24,17 @@ public class Board {
 	public ArrayList<Integer> getPlayer2() {
 		return player2;
 	}
+	
+	public void setPlayer1(ArrayList<Integer> listIn)
+	{
+		this.player1 = listIn;
+	}
+	
+	public void setPlayer2(ArrayList<Integer> listIn)
+	{
+		this.player2 = listIn;
+	}
+	
 
 	public int getHouseSeeds(int house) {
 		if (house < 6) {
@@ -38,7 +49,7 @@ public class Board {
 		nextHouse = nextHouse % 12;
 		if (nextHouse < 6) {
 			for (int i = 0; i <= nextHouse; ++i) {
-				if (player1.get(i) != 2 || player1.get(i) != 3) {
+				if (player1.get(i) != 2 && player1.get(i) != 3) {
 					System.out.println("yes");
 					return true;
 				}
@@ -52,7 +63,7 @@ public class Board {
 			}
 		} else {
 			for (int i = 0; i <= nextHouse - 6; ++i) {
-				if (player2.get(i) != 2 || player2.get(i) != 3) {
+				if (player2.get(i) != 2 && player2.get(i) != 3) {
 					System.out.println("yes");
 					return true;
 				}

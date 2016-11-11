@@ -3,6 +3,7 @@ package model;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.junit.Test;
 
@@ -110,13 +111,55 @@ public class BoardTest {
 	@Test
 	public void testGetValidHouses()
 	{
-		//TODO
+		Board testBoard = new Board();
+		ArrayList<Integer> testList1 = new ArrayList<>();
+		for (int i = 2; i < 6; ++i)
+		{
+			testList1.add(i);
+		}
+		
+		ArrayList<Integer> testList2 = new ArrayList<>(Collections.nCopies(6, 0));
+		testBoard.setPlayer2(testList2);
+		
+		//Test player 1 houses
+		assertEquals(testList1, testBoard.getValidHouses(1));
+		
+		//Test player 2 houses
+		ArrayList<Integer> testList3 = new ArrayList<>(Collections.nCopies(6, 4));
+		testBoard.setPlayer1(testList2);
+		testBoard.setPlayer2(testList3);
+
+		assertEquals(testList1, testBoard.getValidHouses(2));	
 	}
 	
 	@Test
 	public void testCanCapture()
 	{
-		//TODO
+		Board testBoard = new Board();
+		ArrayList<Integer> testList1 = new ArrayList<>(Collections.nCopies(6, 0));
+		boolean testBool = testBoard.canCapture(0);
+		
+		//Test an initial move can capture
+		assertEquals(true, testBool);
+		
+		//Test a specific situation
+		testList1.set(1, 2);
+		testList1.set(0, 2);
+		testBoard.setPlayer1(testList1);
+		boolean testBool2 = testBoard.canCapture(1);
+		
+		assertEquals(false, testBool2);
+		
+		//Test another specific scenario
+		ArrayList<Integer> testList2 = new ArrayList<>(Collections.nCopies(6, 0));
+		testList2.set(0,  1);
+		testList2.set(1,  2);
+		testBoard.setPlayer1(testList2);
+		boolean testBool3 = testBoard.canCapture(1);
+		
+		assertEquals(true, testBool3);
+		
+		
 	}
 	
 	@Test
