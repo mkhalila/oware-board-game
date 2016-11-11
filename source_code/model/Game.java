@@ -112,6 +112,10 @@ public class Game {
 		board.clear();
 		
 	}
+	
+	public Board getBoard() {
+		return board;
+	}
 
 
 
