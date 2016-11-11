@@ -300,12 +300,16 @@ public class OwareUI extends Application {
         return button;
     }
 
-    public void enableHouse(int houseIn) {
+    public void enableP1House(int houseIn) {
         if ((houseIn >= 0) || (houseIn < 6)) {
             for (Node b : hbPOneHouseHolder.getChildren()) {
                 if (houseIn == Integer.parseInt(b.getId())) b.setDisable(false);
             }
-        } else {
+        }
+    }
+
+    public void enableP2House(int houseIn) {
+        if ((houseIn >= 0) || (houseIn < 6)) {
             for (Node b : hbPTwoHouseHolder.getChildren()) {
                 if (houseIn == Integer.parseInt(b.getId())) b.setDisable(false);
             }
@@ -327,6 +331,18 @@ public class OwareUI extends Application {
                 Button btn = (Button) b;
                 btn.setText(""+ value);
             }
+        }
+    }
+
+    public void disableAllP1() {
+        for (Node b : hbPOneHouseHolder.getChildren()) {
+            b.setDisable(true);
+        }
+    }
+
+    public void disableAllP2() {
+        for (Node b : hbPTwoHouseHolder.getChildren()) {
+            b.setDisable(true);
         }
     }
 
