@@ -38,7 +38,7 @@ public class Board {
 		nextHouse = nextHouse % 12;
 		if (nextHouse < 6) {
 			for (int i = 0; i <= nextHouse; ++i) {
-				if (player1.get(i) != 2 || player1.get(i) != 3) {
+				if (player1.get(i) != 2 && player1.get(i) != 3) {
 					System.out.println("yes");
 					return true;
 				}
@@ -52,7 +52,7 @@ public class Board {
 			}
 		} else {
 			for (int i = 0; i <= nextHouse - 6; ++i) {
-				if (player2.get(i) != 2 || player2.get(i) != 3) {
+				if (player2.get(i) != 2 && player2.get(i) != 3) {
 					System.out.println("yes");
 					return true;
 				}
@@ -172,7 +172,7 @@ public class Board {
 		ArrayList<Integer> validHouses = new ArrayList<Integer> ();
 		for(int i = 0; i < player2.size(); ++i) {
 			if(player2.get(i) != 0) {
-				validHouses.add(i);
+				validHouses.add(i+6);
 			}
 		}
 		
