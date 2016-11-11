@@ -42,6 +42,11 @@ public class TwoPlayerController implements EventHandler {
             p2 = new RandomPlayer();
             game = new Game(p1, p2);
 
+            if (!game.isPlayer1Turn())  {
+                game.makeMove(p2.nextMove(game.validHouses()));
+                game.print();
+            }
+
             validateHouses();
             updateHouses();
             view.updateScores(p1.getScore(), p2.getScore());
@@ -71,11 +76,15 @@ public class TwoPlayerController implements EventHandler {
 
                 if (game.isPlayer1Turn()) {
                     game.makeMove(Integer.parseInt(source.getId()));
+                    validateHouses();
+                    updateHouses();
+                    view.updateScores(p1.getScore(), p2.getScore());
+                    game.print();
                     if (!(p2 instanceof HumanPlayer)) {
                         game.print();
                         game.makeMove(p2.nextMove(game.validHouses()));
                     }
-                }
+
                 } else {
                     game.makeMove(Integer.parseInt(source.getId()));
                 }
@@ -87,10 +96,12 @@ public class TwoPlayerController implements EventHandler {
             }
 
 
-        if (game.checkScores()) {
-            System.out.println("Game over");
+            if (game.checkScores()) {
+                System.out.println("Game over");
+            }
         }
     }
+
 
     private void updateHouses() {
         for (int i = 0; i < game.getPlayer1().size(); ++i) {
