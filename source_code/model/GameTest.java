@@ -12,8 +12,8 @@ public class GameTest {
 	@Test
 	public void testMakeMove()
 	{
-		Player player1 = new Player();
-		Player player2 = new Player();
+		Player player1 = new HumanPlayer();
+		Player player2 = new HumanPlayer();
 		Game game1 = new Game(player1, player2);
 		
 		//Test player1 side of board after selecting house 5
@@ -65,8 +65,8 @@ public class GameTest {
 	public void testCheckScores()
 	{
 		//Test if nobody has won at the start of the game
-		Player player1 = new Player();
-		Player player2 = new Player();
+		Player player1 = new HumanPlayer();
+		Player player2 = new HumanPlayer();
 		Game game = new Game(player1, player2);
 		
 		assertEquals(false, game.checkScores());
@@ -97,8 +97,8 @@ public class GameTest {
 	@Test
 	public void testReturnWinner()
 	{
-		Player player1 = new Player();
-		Player player2 = new Player();
+		Player player1 = new HumanPlayer();
+		Player player2 = new HumanPlayer();
 		Game game = new Game(player1, player2);
 		
 		//Test that player 1 is correctly identified as winner
@@ -122,8 +122,8 @@ public class GameTest {
 	public void testPlayersCaptureOwnSeeds()
 	{
 		//Test that all seeds are added to the players score
-		Player player1 = new Player();
-		Player player2 = new Player();
+		Player player1 = new HumanPlayer();
+		Player player2 = new HumanPlayer();
 		Game game = new Game(player1, player2);
 		
 		game.playersCaptureOwnSeeds();

@@ -9,7 +9,7 @@ public class PlayerTest {
 	@Test
 	public void testInitialScore()
 	{
-		Player testPlayer = new Player();
+		Player testPlayer = new HumanPlayer();
 		int initialScore = testPlayer.getScore();
 		
 		//Test initial score is 0
@@ -19,7 +19,7 @@ public class PlayerTest {
 	@Test
 	public void testSetScore()
 	{
-		Player testPlayer = new Player();
+		Player testPlayer = new HumanPlayer();
 		
 		//Test initial setting
 		testPlayer.setScore(5);
@@ -37,7 +37,7 @@ public class PlayerTest {
 	@Test
 	public void testIncreaseScore()
 	{
-		Player testPlayer = new Player();
+		Player testPlayer = new HumanPlayer();
 		
 		//Test increase works from initial (0) value
 		testPlayer.increaseScore(5);
