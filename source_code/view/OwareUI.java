@@ -63,6 +63,7 @@ public class OwareUI extends Application {
         Button btnAI = createMenuButton("AI Player");
 
         btnTwoPlayer.setOnAction(twoPController);
+        btnRandom.setOnAction(twoPController);
 
         vbMenuButtons.getChildren().addAll(btnTwoPlayer, btnRandom, btnAI);
 
