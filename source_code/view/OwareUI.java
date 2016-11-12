@@ -27,7 +27,7 @@ public class OwareUI extends Application {
     private HBox hbPTwoHouseHolder;
     private Pane board;
     private TwoPlayerController twoPController;
-    private Label lblP1Score, lblP2Score;
+    private ScoreArc saScoreOne, saScoreTwo;
     private ArrayList<Button> alstAllHouses;
 
     @Override
@@ -113,17 +113,15 @@ public class OwareUI extends Application {
 
         bpGameBoard.setCenter(vbHouseHolder);
 
-        lblP1Score = new Label("0");
-        StackPane spScoreOne = createScoreArc(0, lblP1Score);
+        saScoreOne = new ScoreArc(0, "0");
 
-        HBox hbArcOne = new HBox(spScoreOne);
+        HBox hbArcOne = new HBox(saScoreOne);
         hbArcOne.setAlignment(Pos.CENTER);
         bpGameBoard.setBottom(hbArcOne);
 
-        lblP2Score = new Label("0");
-        StackPane spScoreTwo = createScoreArc(180, lblP2Score);
+        saScoreTwo = new ScoreArc(180, "0");
 
-        HBox hbArcTwo = new HBox(spScoreTwo);
+        HBox hbArcTwo = new HBox(saScoreTwo);
         hbArcTwo.setAlignment(Pos.CENTER);
         bpGameBoard.setTop(hbArcTwo);
 
@@ -263,20 +261,7 @@ public class OwareUI extends Application {
     private void removeHouseHighlighting() {
         for (Button b : alstAllHouses) b.setStyle(b.getStyle() + "-fx-border-width: 1px;");
     }
-
-    private StackPane createScoreArc(double angleIn, Label lblScore) {
-        Arc arc = new Arc(0, 0, 200, 100, angleIn, 180.0f);
-        arc.setFill(Color.valueOf("#1b2c47"));
-        arc.setStroke(Color.WHITE);
-
-        lblScore.setStyle("-fx-text-fill: white; -fx-font-size: 20px");
-        
-        StackPane stackPane = new StackPane(arc);
-        stackPane.getChildren().add(lblScore);
-
-        return stackPane;
-    }
-
+    
     public void enableP1House(int houseIn) {
         if ((houseIn >= 0) || (houseIn < 6)) {
             for (Node b : hbPOneHouseHolder.getChildren()) {
@@ -312,8 +297,8 @@ public class OwareUI extends Application {
     }
 
     public void updateScores(int scoreP1, int scoreP2) {
-        lblP1Score.setText("" + scoreP1);
-        lblP2Score.setText("" + scoreP2);
+        saScoreOne.updateScore(scoreP1);
+        saScoreTwo.updateScore(scoreP2);
     }
 
     public void disableAllP1() {
