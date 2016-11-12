@@ -20,9 +20,9 @@ public class MainMenu extends Scene {
     private Label lblMenuTitle;
     private HBox hbTitlePane;
     private VBox vbMenuButtons;
-    private Button btnTwoPlayer;
-    private Button btnRandom;
-    private Button btnAI;
+    private MenuButton btnTwoPlayer;
+    private MenuButton btnRandom;
+    private MenuButton btnAI;
 
     public MainMenu(double width, double height) {
         super(new BorderPane(), width, height);
@@ -44,9 +44,9 @@ public class MainMenu extends Scene {
         vbMenuButtons = new VBox(10);
         vbMenuButtons.setAlignment(Pos.CENTER);
 
-        btnTwoPlayer = createMenuButton("2 Player");
-        btnRandom = createMenuButton("Random Player");
-        btnAI = createMenuButton("AI Player");
+        btnTwoPlayer = new MenuButton("2 Player");
+        btnRandom = new MenuButton("Random Player");
+        btnAI = new MenuButton("AI Player");
 
         vbMenuButtons.getChildren().addAll(btnTwoPlayer, btnRandom, btnAI);
 
@@ -61,7 +61,7 @@ public class MainMenu extends Scene {
         return btnRandom;
     }
 
-    private Button createMenuButton(String text) {
+    /*private Button createMenuButton(String text) {
         final String sBtnStyle = "-fx-font-size: 18px; " +
                 "-fx-background-color: #1b2c47; " +
                 "-fx-border-color: white;" +
@@ -87,5 +87,5 @@ public class MainMenu extends Scene {
         });
 
         return button;
-    }
+    }*/
 }
