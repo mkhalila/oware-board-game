@@ -15,6 +15,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class OwareUI extends Application {
     private Scene mainMenu;
     private Stage primaryStage;
@@ -25,6 +27,7 @@ public class OwareUI extends Application {
     private Pane board;
     private TwoPlayerController twoPController;
     private Label lblP1Score, lblP2Score;
+    private ArrayList<Button> alstAllHouses;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -90,12 +93,14 @@ public class OwareUI extends Application {
 
         vbHouseHolder.getChildren().addAll(hbPTwoHouseHolder, hbPOneHouseHolder);
 
+        alstAllHouses = new ArrayList<>(12);
+
         for (int i = 0; i < 6; ++i) {
             Button btnOneHouse = createHouseButton("");
             btnOneHouse.setId("" + i);
             btnOneHouse.setDisable(true);
             hbPOneHouseHolder.getChildren().add(btnOneHouse);
-
+            alstAllHouses.add(btnOneHouse);
         }
 
         for (int i =11; i > 5; --i) {
@@ -103,6 +108,7 @@ public class OwareUI extends Application {
             btnTwoHouse.setId("" + i);
             btnTwoHouse.setDisable(true);
             hbPTwoHouseHolder.getChildren().add(btnTwoHouse);
+            alstAllHouses.add(6, btnTwoHouse);
         }
 
         bpGameBoard.setCenter(vbHouseHolder);
@@ -250,6 +256,10 @@ public class OwareUI extends Application {
             @Override
             public void handle(MouseEvent event) {
                 button.setStyle(sBtnStyle + "-fx-border-color: #1692cc;");
+
+                Button other = alstAllHouses.get(calcHighlight(button));
+
+                other.setStyle(other.getStyle() + "-fx-border-width: 5px;");
             }
         });
 
@@ -257,10 +267,32 @@ public class OwareUI extends Application {
             @Override
             public void handle(MouseEvent event) {
                 button.setStyle(sBtnStyle);
+
+                Button other = alstAllHouses.get(calcHighlight(button));
+                other.setStyle(other.getStyle() + "-fx-border-width: 1px;");
+
             }
         });
 
         return button;
+    }
+
+    private int calcHighlight(Button button) {
+        int noToMove = Integer.parseInt(button.getText());
+
+        int startingIndex = -1;
+        for (Button btn : alstAllHouses) {
+            if (btn.getId() == button.getId()) {
+                startingIndex = alstAllHouses.indexOf(btn);
+            }
+        }
+
+        int n =  noToMove/12;
+        noToMove += startingIndex;
+        noToMove += n;
+        noToMove %= 12;
+
+        return noToMove;
     }
 
     private StackPane createScoreArc(double angleIn, Label lblScore) {
