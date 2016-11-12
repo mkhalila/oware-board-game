@@ -3,7 +3,9 @@ package view;
 import controller.TwoPlayerController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -18,12 +20,11 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class OwareUI extends Application {
-    private Scene mainMenu;
+    private MainMenu mainMenu;
     private Stage primaryStage;
     private BorderPane bpGameBoard;
     private HBox hbPOneHouseHolder;
     private HBox hbPTwoHouseHolder;
-    private Button btnTwoPlayer;
     private Pane board;
     private TwoPlayerController twoPController;
     private Label lblP1Score, lblP2Score;
@@ -35,43 +36,38 @@ public class OwareUI extends Application {
         primaryStage.setTitle("Oware");
 
         twoPController = new TwoPlayerController(this);
-
-        mainMenu = new Scene(createMainMenu(primaryStage), 830, 500);
-
         board = createBoard();
-        primaryStage.setScene(mainMenu);
+
+        createMainMenu(primaryStage);
 
         primaryStage.show();
     }
 
-    private Pane createMainMenu(Stage primaryStage) {
-        BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #1b2c47");
+    private void createMainMenu(Stage primaryStage) {
+        mainMenu = new MainMenu(830, 500);
 
-        Label lblMenuTitle = new Label("Oware");
-        lblMenuTitle.setStyle("-fx-font: 100px Monospaced;" +
-                " -fx-text-fill: white;");
+        Button btnTwoPlayer = mainMenu.getBtnTwoPlayer();
+        btnTwoPlayer.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(new Scene(board, 830, 500));
+                primaryStage.setTitle("Oware: " + btnTwoPlayer.getText());
+            }
+        });
+        mainMenu.getBtnTwoPlayer().setOnAction(twoPController);
 
-        HBox hbTitlePane = new HBox(lblMenuTitle);
-        hbTitlePane.setAlignment(Pos.CENTER);
+        Button btnRandom = mainMenu.getBtnRandom();
+        btnRandom.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(new Scene(board, 830, 500));
+                primaryStage.setTitle("Oware: " + btnRandom.getText());
+            }
+        });
+        mainMenu.getBtnRandom().setOnAction(twoPController);
 
-        root.setTop(hbTitlePane);
-        root.setAlignment(hbTitlePane, Pos.CENTER);
+        primaryStage.setScene(mainMenu);
 
-        VBox vbMenuButtons = new VBox(10);
-        vbMenuButtons.setAlignment(Pos.CENTER);
-
-        btnTwoPlayer = createMenuButton("2 Player");
-        Button btnRandom = createMenuButton("Random Player");
-        Button btnAI = createMenuButton("AI Player");
-
-        btnTwoPlayer.setOnAction(twoPController);
-        btnRandom.setOnAction(twoPController);
-
-        vbMenuButtons.getChildren().addAll(btnTwoPlayer, btnRandom, btnAI);
-
-        root.setCenter(vbMenuButtons);
-        return root;
     }
 
     private Pane createBoard() {
@@ -166,7 +162,7 @@ public class OwareUI extends Application {
                 btnTwoPlayer.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        primaryStage.setScene(new Scene(createBoard(), 830, 500));
+                        primaryStage.setScene(new Scene(board, 830, 500));
                         primaryStage.setTitle("Oware: Two Player");
                     }
                 });
@@ -210,14 +206,6 @@ public class OwareUI extends Application {
         Button button = new Button(text);
         button.setPrefWidth(200);
         button.setStyle(sBtnStyle);
-
-        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                primaryStage.setScene(new Scene(board, 830, 500));
-                primaryStage.setTitle("Oware: " + button.getText());
-            }
-        });
 
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
