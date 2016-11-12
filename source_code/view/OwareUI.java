@@ -101,7 +101,7 @@ public class OwareUI extends Application {
             alstAllHouses.add(btnOneHouse);
         }
 
-        for (int i =11; i > 5; --i) {
+        for (int i = 11; i > 5; --i) {
             Button btnTwoHouse = new HouseButton("");
             hoverHouseButton(btnTwoHouse);
             btnTwoHouse.setOnAction(twoPController);
@@ -233,6 +233,13 @@ public class OwareUI extends Application {
 
             }
         });
+
+        btnHouse.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                removeHouseHighlighting();
+            }
+        });
     }
 
     private int calcHighlight(Button button) {
@@ -251,6 +258,10 @@ public class OwareUI extends Application {
         noToMove %= 12;
 
         return noToMove;
+    }
+
+    private void removeHouseHighlighting() {
+        for (Button b : alstAllHouses) b.setStyle(b.getStyle() + "-fx-border-width: 1px;");
     }
 
     private StackPane createScoreArc(double angleIn, Label lblScore) {
