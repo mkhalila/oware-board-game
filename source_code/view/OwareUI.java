@@ -92,7 +92,9 @@ public class OwareUI extends Application {
         alstAllHouses = new ArrayList<>(12);
 
         for (int i = 0; i < 6; ++i) {
-            Button btnOneHouse = createHouseButton("");
+            Button btnOneHouse = new HouseButton("");
+            hoverHouseButton(btnOneHouse);
+            btnOneHouse.setOnAction(twoPController);
             btnOneHouse.setId("" + i);
             btnOneHouse.setDisable(true);
             hbPOneHouseHolder.getChildren().add(btnOneHouse);
@@ -100,7 +102,9 @@ public class OwareUI extends Application {
         }
 
         for (int i =11; i > 5; --i) {
-            Button btnTwoHouse = createHouseButton("");
+            Button btnTwoHouse = new HouseButton("");
+            hoverHouseButton(btnTwoHouse);
+            btnTwoHouse.setOnAction(twoPController);
             btnTwoHouse.setId("" + i);
             btnTwoHouse.setDisable(true);
             hbPTwoHouseHolder.getChildren().add(btnTwoHouse);
@@ -196,7 +200,7 @@ public class OwareUI extends Application {
         return root;
     }
 
-    private Button createHouseButton(String title) {
+    private void hoverHouseButton(Button btnHouse) {
         final String sBtnStyle = "-fx-font-size: 20px; " +
                 "-fx-background-color: #1b2c47; " +
                 "-fx-border-color: white;" +
@@ -208,33 +212,27 @@ public class OwareUI extends Application {
                 "-fx-max-width: 100px; " +
                 "-fx-max-height: 100px;";
 
-        Button button = new Button(title);
-        button.setStyle(sBtnStyle);
-        button.setOnAction(twoPController);
-
-        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        btnHouse.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                button.setStyle(sBtnStyle + "-fx-border-color: #1692cc;");
+                btnHouse.setStyle(sBtnStyle + "-fx-border-color: #1692cc;");
 
-                Button other = alstAllHouses.get(calcHighlight(button));
+                Button other = alstAllHouses.get(calcHighlight(btnHouse));
 
                 other.setStyle(other.getStyle() + "-fx-border-width: 5px;");
             }
         });
 
-        button.setOnMouseExited(new EventHandler<MouseEvent>() {
+        btnHouse.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                button.setStyle(sBtnStyle);
+                btnHouse.setStyle(sBtnStyle);
 
-                Button other = alstAllHouses.get(calcHighlight(button));
+                Button other = alstAllHouses.get(calcHighlight(btnHouse));
                 other.setStyle(other.getStyle() + "-fx-border-width: 1px;");
 
             }
         });
-
-        return button;
     }
 
     private int calcHighlight(Button button) {
