@@ -140,10 +140,10 @@ public class OwareUI extends Application {
                 vbSidebar.setFillWidth(true);
                 vbSidebar.setStyle("-fx-padding: 5px; -fx-background-color: white");
 
-                Button btnCloseSB = createSidebarButtons("Close");
-                Button btnTwoPlayer = createSidebarButtons("2 Player");
-                Button btnRandom = createSidebarButtons("Random Player");
-                Button btnAI = createSidebarButtons("AI Player");
+                Button btnCloseSB = new SidebarButton("Close");
+                Button btnTwoPlayer = new SidebarButton("2 Player");
+                Button btnRandom = new SidebarButton("Random Player");
+                Button btnAI = new SidebarButton("AI Player");
 
                 vbSidebar.getChildren().addAll(btnCloseSB, btnTwoPlayer, btnRandom, btnAI);
 
@@ -266,32 +266,6 @@ public class OwareUI extends Application {
         stackPane.getChildren().add(lblScore);
 
         return stackPane;
-    }
-
-    private Button createSidebarButtons(String text) {
-        final String sSideBarButtonStyle = "-fx-font-size: 14px; " +
-                "-fx-background-color: #1b2c47; " +
-                "-fx-text-fill: white;";
-
-        Button button = new Button(text);
-        button.setPrefWidth(114);
-        button.setStyle(sSideBarButtonStyle);
-
-        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                button.setStyle(sSideBarButtonStyle + "-fx-background-color: #1692cc");
-            }
-        });
-
-        button.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                button.setStyle(sSideBarButtonStyle);
-            }
-        });
-
-        return button;
     }
 
     public void enableP1House(int houseIn) {
