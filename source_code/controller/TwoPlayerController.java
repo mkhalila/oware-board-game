@@ -9,9 +9,6 @@ import model.Player;
 import model.RandomPlayer;
 import view.OwareUI;
 
-/**
- * Created by mkhal on 10/11/2016.
- */
 public class TwoPlayerController implements EventHandler {
     private Game game;
     private OwareUI view;
@@ -62,17 +59,6 @@ public class TwoPlayerController implements EventHandler {
         if (isHouseButton) {
             if (!game.checkScores()) {
                 validateHouses();
-
-               /* System.out.println("Got 'ere");
-                if(!game.isPlayer1Turn() || !(p2 instanceof HumanPlayer)){
-                    System.out.println("Got 'here #2");
-                    game.makeMove(p2.nextMove(game.validHouses()));
-                }else{
-                    game.makeMove(Integer.parseInt(source.getId()));
-                    if (!game.checkScores() && (p2 instanceof RandomPlayer)) {
-                        game.makeMove(p2.nextMove(game.validHouses()));
-                    }
-                }*/
 
                 if (game.isPlayer1Turn()) {
                     game.makeMove(Integer.parseInt(source.getId()));
