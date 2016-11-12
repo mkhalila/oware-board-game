@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public abstract class Player {
 
     private int score;
+    protected Game game;
 
     public Player () {
          score = 0;
@@ -22,6 +23,10 @@ public abstract class Player {
 
     public void increaseScore(int houseSeeds) {
         score += houseSeeds;
+    }
+    
+    public void playGame(Game game) {
+    	this.game = game;
     }
 
 }

@@ -6,6 +6,19 @@ public class Board {
 	private ArrayList<Integer> player1;
 	private ArrayList<Integer> player2;
 
+	public Board(Board other) {
+		player1 = new ArrayList<Integer>(6);
+		player2 = new ArrayList<Integer>(6);
+		
+		for(int i: other.player1) {
+			player1.add(i);
+		}
+		
+		for(int i: other.player2) {
+			player2.add(i);
+		}
+	}
+	
 	public Board() {
 		player1 = new ArrayList<Integer>(6);
 		player2 = new ArrayList<Integer>(6);
@@ -45,44 +58,44 @@ public class Board {
 	}
 
 	public boolean canCapture(int nextHouse) {
-		System.out.println("can capture " + nextHouse + "?");
+		//System.out.println("can capture " + nextHouse + "?");
 		nextHouse = nextHouse % 12;
 		if (nextHouse < 6) {
 			for (int i = 0; i <= nextHouse; ++i) {
 				if (player1.get(i) != 2 && player1.get(i) != 3) {
-					System.out.println("yes");
+					//System.out.println("yes");
 					return true;
 				}
 			}
 
 			for (int i = nextHouse + 1; i < 6; ++i) {
 				if (player1.get(i) > 0) {
-					System.out.println("yes");
+					//System.out.println("yes");
 					return true;
 				}
 			}
 		} else {
 			for (int i = 0; i <= nextHouse - 6; ++i) {
 				if (player2.get(i) != 2 && player2.get(i) != 3) {
-					System.out.println("yes");
+					//System.out.println("yes");
 					return true;
 				}
 			}
 
 			for (int i = nextHouse - 5; i < 6; ++i) {
 				if (player2.get(i) > 0) {
-					System.out.println("yes");
+					//System.out.println("yes");
 					return true;
 				}
 			}
 		}
 
-		System.out.println("no");
+		//System.out.println("no");
 		return false;
 	}
 
 	public void emptyHouse(int house) {
-		System.out.println("Clearing house " + house);
+		//System.out.println("Clearing house " + house);
 		if (house < 6) {
 			player1.set(house, 0);
 		} else {

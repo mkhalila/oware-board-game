@@ -16,8 +16,18 @@ public class Game {
         board = new Board();
         this.player1 = player1;
         this.player2 = player2;
+        player1.playGame(this);
+        player2.playGame(this);
         isFinished = false;
         isP1Turn = Math.random() < 0.5;
+    }
+    
+    public Game(Game other) {
+    	this.board = new Board(other.board);
+    	this.player1 = other.player1;
+    	this.player2 = other.player2;
+    	this.isFinished = other.isFinished;
+    	this.isP1Turn = false;
     }
 
     public void makeMove (int house) {
@@ -38,7 +48,7 @@ public class Game {
                     //by the way i was totally wrong about & and &&, it works exactly the other way round =)
                     /*new condition, could be done better probably*/(nextHouse>=0) &&
                     (house / 6 != (nextHouse) / 6) && (board.getHouseSeeds(nextHouse) == 2 || board.getHouseSeeds(nextHouse) == 3) ) {
-                System.out.println("Capturing " + board.getHouseSeeds(nextHouse) + " seeds from house " + nextHouse);
+               // System.out.println("Capturing " + board.getHouseSeeds(nextHouse) + " seeds from house " + nextHouse);
                 if (isP1Turn) {
                     player1.increaseScore(board.getHouseSeeds(nextHouse));
                 } else {
@@ -49,7 +59,7 @@ public class Game {
                 --nextHouse;
             }
         }
-        System.out.println("end of turn");
+       // System.out.println("end of turn");
         isP1Turn = !isP1Turn;
 
     }
