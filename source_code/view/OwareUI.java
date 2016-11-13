@@ -59,6 +59,16 @@ public class OwareUI extends Application {
         });
         mainMenu.getBtnRandom().setOnAction(twoPController);
 
+        Button btnAI = mainMenu.getBtnAI();
+        btnAI.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(gameBoard);
+                primaryStage.setTitle("Oware: " + btnAI.getText());
+            }
+        });
+        mainMenu.getBtnAI().setOnAction(twoPController);
+
         primaryStage.setScene(mainMenu);
 
     }
