@@ -93,6 +93,15 @@ public class OwareUI extends Application {
                 primaryStage.setTitle("Oware: " + gameBoard.getSidebar().getBtnRandom().getText());
             }
         });
+
+        gameBoard.getSidebar().getBtnAI().setOnAction(twoPController);
+        gameBoard.getSidebar().getBtnAI().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(gameBoard);
+                primaryStage.setTitle("Oware: " + gameBoard.getSidebar().getBtnAI().getText());
+            }
+        });
     }
 
     public void enableP1House(int houseIn) {

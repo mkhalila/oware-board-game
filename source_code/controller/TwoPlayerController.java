@@ -37,7 +37,6 @@ public class TwoPlayerController implements EventHandler {
 
             if (!game.isPlayer1Turn())  {
                 game.makeMove(p2.nextMove(game.validHouses()));
-                game.print();
             }
 
             validateHouses();
@@ -52,7 +51,6 @@ public class TwoPlayerController implements EventHandler {
 
             if (!game.isPlayer1Turn()) {
                 game.makeMove(p2.nextMove(game.validHouses()));
-                game.print();
             }
 
             validateHouses();
