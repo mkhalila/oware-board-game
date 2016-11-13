@@ -22,11 +22,14 @@ public class GameBoard extends Scene {
     private ArrayList<Button> alstAllHouses;
     private ScoreArc saScoreOne, saScoreTwo;
     private TwoPlayerController controller;
+    private Sidebar sidebar;
 
     public GameBoard(double width, double height, TwoPlayerController controller) {
         super(new BorderPane(), width, height);
 
         this.controller = controller;
+
+        sidebar = new Sidebar(5);
 
         BorderPane root = (BorderPane) getRoot();
         root.setStyle("-fx-background-color: #1b2c47");
@@ -95,25 +98,13 @@ public class GameBoard extends Scene {
         btnToMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                VBox vbSidebar = new VBox(5);
-                vbSidebar.setFillWidth(true);
-                vbSidebar.setStyle("-fx-padding: 5px; -fx-background-color: white");
-
-                Button btnCloseSB = new SidebarButton("Close");
-                Button btnTwoPlayer = new SidebarButton("2 Player");
-                Button btnRandom = new SidebarButton("Random Player");
-                Button btnAI = new SidebarButton("AI Player");
-
-                vbSidebar.getChildren().addAll(btnCloseSB, btnTwoPlayer, btnRandom, btnAI);
-
-                bpToMenu.setLeft(vbSidebar);
-
+                bpToMenu.setLeft(sidebar);
                 hbToMenu.getChildren().remove(btnToMenu);
 
-                btnCloseSB.setOnAction(new EventHandler<ActionEvent>() {
+                sidebar.getBtnCloseSB().setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        bpToMenu.getChildren().remove(vbSidebar);
+                        bpToMenu.getChildren().remove(sidebar);
                         hbToMenu.getChildren().add(btnToMenu);
                     }
                 });
@@ -267,5 +258,9 @@ public class GameBoard extends Scene {
         for (Node b : hbPTwoHouseHolder.getChildren()) {
             b.setDisable(true);
         }
+    }
+
+    public Sidebar getSidebar() {
+        return sidebar;
     }
 }

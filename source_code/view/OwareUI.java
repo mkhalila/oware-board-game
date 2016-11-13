@@ -17,13 +17,7 @@ public class OwareUI extends Application {
     private Stage primaryStage;
     private MainMenu mainMenu;
     private GameBoard gameBoard;
-    private BorderPane bpGameBoard;
-    private HBox hbPOneHouseHolder;
-    private HBox hbPTwoHouseHolder;
-    private Pane board;
     private TwoPlayerController twoPController;
-    private ScoreArc saScoreOne, saScoreTwo;
-    private ArrayList<Button> alstAllHouses;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -46,7 +40,6 @@ public class OwareUI extends Application {
         btnTwoPlayer.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //gameBoard = new GameBoard(830, 500, twoPController);
                 primaryStage.setScene(gameBoard);
                 primaryStage.setTitle("Oware: " + btnTwoPlayer.getText());
             }
@@ -69,6 +62,22 @@ public class OwareUI extends Application {
 
     private void createBoard() {
         gameBoard = new GameBoard(830, 500, twoPController);
+
+        gameBoard.getSidebar().getBtnTwoPlayer().setOnAction(twoPController);
+        gameBoard.getSidebar().getBtnTwoPlayer().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(gameBoard);
+            }
+        });
+
+        gameBoard.getSidebar().getBtnRandom().setOnAction(twoPController);
+        gameBoard.getSidebar().getBtnRandom().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(gameBoard);
+            }
+        });
     }
 
     public void enableP1House(int houseIn) {
@@ -99,7 +108,7 @@ public class OwareUI extends Application {
         gameBoard.disableAllP2();
     }
 
-    public void gameOver(int winner) {
+    /*public void gameOver(int winner) {
         hbPOneHouseHolder.getChildren().removeAll();
         hbPTwoHouseHolder.getChildren().removeAll();
         hbPOneHouseHolder.getChildren().add(new Label("Game over"));
@@ -111,6 +120,6 @@ public class OwareUI extends Application {
         else
             hbPTwoHouseHolder.getChildren().add(new Label("Draw!"));
 
-    }
+    }*/
 
 }
