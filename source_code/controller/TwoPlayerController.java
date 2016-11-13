@@ -3,10 +3,7 @@ package controller;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import model.Game;
-import model.HumanPlayer;
-import model.Player;
-import model.RandomPlayer;
+import model.*;
 import view.OwareUI;
 
 public class TwoPlayerController implements EventHandler {
@@ -34,14 +31,26 @@ public class TwoPlayerController implements EventHandler {
         }
 
         if (source.getText().equals("Random Player")) {
-            System.out.println("Random player creation");
             p1 = new HumanPlayer();
             p2 = new RandomPlayer();
             game = new Game(p1, p2);
 
             if (!game.isPlayer1Turn())  {
                 game.makeMove(p2.nextMove(game.validHouses()));
-                game.print();
+            }
+
+            validateHouses();
+            updateHouses();
+            view.updateScores(p1.getScore(), p2.getScore());
+        }
+
+        if (source.getText().equals("AI Player")) {
+            p1 = new HumanPlayer();
+            p2 = new AIPlayer();
+            game = new Game(p1, p2);
+
+            if (!game.isPlayer1Turn()) {
+                game.makeMove(p2.nextMove(game.validHouses()));
             }
 
             validateHouses();

@@ -241,22 +241,4 @@ public class GameBoard extends Scene {
         return sidebar;
     }
 
-    public void gameOver(int winner) {
-        System.out.println("Got here gameBoard");
-        hbPOneHouseHolder.getChildren().removeAll();
-        hbPTwoHouseHolder.getChildren().removeAll();
-        hbPOneHouseHolder.getChildren().add(new Label("Game over"));
-
-        System.out.println("Should've removed buttons");
-
-        if (winner == 1) {
-            hbPTwoHouseHolder.getChildren().add(new Label("Player 1 Wins!"));
-            System.out.println("Should've added labels");
-        }
-        else if (winner == 2)
-            hbPTwoHouseHolder.getChildren().add(new Label("Player 2 Wins!"));
-        else
-            hbPTwoHouseHolder.getChildren().add(new Label("Draw!"));
-
-    }
 }

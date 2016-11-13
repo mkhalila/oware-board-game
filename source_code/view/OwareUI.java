@@ -59,6 +59,16 @@ public class OwareUI extends Application {
         });
         mainMenu.getBtnRandom().setOnAction(twoPController);
 
+        Button btnAI = mainMenu.getBtnAI();
+        btnAI.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(gameBoard);
+                primaryStage.setTitle("Oware: " + btnAI.getText());
+            }
+        });
+        mainMenu.getBtnAI().setOnAction(twoPController);
+
         primaryStage.setScene(mainMenu);
 
     }
@@ -81,6 +91,15 @@ public class OwareUI extends Application {
             public void handle(MouseEvent event) {
                 primaryStage.setScene(gameBoard);
                 primaryStage.setTitle("Oware: " + gameBoard.getSidebar().getBtnRandom().getText());
+            }
+        });
+
+        gameBoard.getSidebar().getBtnAI().setOnAction(twoPController);
+        gameBoard.getSidebar().getBtnAI().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setScene(gameBoard);
+                primaryStage.setTitle("Oware: " + gameBoard.getSidebar().getBtnAI().getText());
             }
         });
     }
