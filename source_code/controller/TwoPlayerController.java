@@ -90,12 +90,12 @@ public class TwoPlayerController implements EventHandler {
 
 
     private void updateHouses() {
-        for (int i = 0; i < game.getPlayer1().size(); ++i) {
-            view.updateHouseP1(i, game.getPlayer1().get(i));
+        for (int i = 0; i < game.getPlayer1Houses().size(); ++i) {
+            view.updateHouseP1(i, game.getPlayer1Houses().get(i));
         }
 
         for (int i = 6; i < 12; ++i) {
-            view.updateHouseP2(i, game.getPlayer2().get(i-6));
+            view.updateHouseP2(i, game.getPlayer2Houses().get(i-6));
         }
     }
 
