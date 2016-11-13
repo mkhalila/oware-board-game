@@ -19,7 +19,8 @@ public class Game {
         player1.playGame(this);
         player2.playGame(this);
         isFinished = false;
-        isP1Turn = Math.random() < 0.5;
+        isP1Turn = false;
+        //isP1Turn = Math.random() < 0.5;
     }
     
     public Game(Game other) {
@@ -27,7 +28,7 @@ public class Game {
     	this.player1 = other.player1;
     	this.player2 = other.player2;
     	this.isFinished = other.isFinished;
-    	this.isP1Turn = false;
+    	this.isP1Turn = other.isP1Turn;
     }
 
     public void makeMove (int house) {
@@ -125,6 +126,14 @@ public class Game {
 	
 	public Board getBoard() {
 		return board;
+	}
+	
+	public Player getPlayer1() {
+		return player1;
+	}
+	
+	public Player getPlayer2() {
+		return player2;
 	}
 
 
