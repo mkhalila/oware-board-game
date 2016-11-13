@@ -53,8 +53,7 @@ public class TwoPlayerController implements EventHandler {
         try {
             Integer.parseInt(source.getId());
             isHouseButton = true;
-        } catch (NumberFormatException e) {
-        }
+        } catch (NumberFormatException e) {}
 
         if (isHouseButton) {
             if (!game.checkScores()) {
@@ -84,7 +83,6 @@ public class TwoPlayerController implements EventHandler {
 
 
             if (game.checkScores()) {
-                System.out.println("Game over");
                 view.gameOver(game.returnWinner());
             }
         }
