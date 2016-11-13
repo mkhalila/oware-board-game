@@ -1,7 +1,9 @@
 package view;
 
 import controller.TwoPlayerController;
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 
@@ -68,6 +71,7 @@ public class OwareUI extends Application {
             @Override
             public void handle(MouseEvent event) {
                 primaryStage.setScene(gameBoard);
+                primaryStage.setTitle("Oware: " + gameBoard.getSidebar().getBtnTwoPlayer().getText());
             }
         });
 
@@ -76,6 +80,7 @@ public class OwareUI extends Application {
             @Override
             public void handle(MouseEvent event) {
                 primaryStage.setScene(gameBoard);
+                primaryStage.setTitle("Oware: " + gameBoard.getSidebar().getBtnRandom().getText());
             }
         });
     }
@@ -108,18 +113,18 @@ public class OwareUI extends Application {
         gameBoard.disableAllP2();
     }
 
-    /*public void gameOver(int winner) {
-        hbPOneHouseHolder.getChildren().removeAll();
-        hbPTwoHouseHolder.getChildren().removeAll();
-        hbPOneHouseHolder.getChildren().add(new Label("Game over"));
+    public void gameOver(int winner) {
+        primaryStage.setScene(new GameOverScene(winner, 830, 500));
+        primaryStage.setTitle("Oware: GAME OVER");
 
-        if (winner == 1)
-            hbPTwoHouseHolder.getChildren().add(new Label("Player 1 Wins!"));
-        else if (winner == 2)
-            hbPTwoHouseHolder.getChildren().add(new Label("Player 2 Wins!"));
-        else
-            hbPTwoHouseHolder.getChildren().add(new Label("Draw!"));
-
-    }*/
-
+        PauseTransition gameOverDelay = new PauseTransition(Duration.seconds(5));
+        gameOverDelay.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(mainMenu);
+                primaryStage.setTitle("Oware");
+            }
+        });
+        gameOverDelay.play();
+    }
 }

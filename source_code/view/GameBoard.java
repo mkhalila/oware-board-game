@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -108,30 +109,6 @@ public class GameBoard extends Scene {
                         hbToMenu.getChildren().add(btnToMenu);
                     }
                 });
-
-                /*btnTwoPlayer.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        primaryStage.setScene(new Scene(board, 830, 500));
-                        primaryStage.setTitle("Oware: Two Player");
-                    }
-                });*/
-
-                /*btnRandom.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        primaryStage.setScene(new Scene(createBoard(), 830, 500));
-                        primaryStage.setTitle("Oware: Random Player");
-                    }
-                });*/
-
-                /*btnAI.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        primaryStage.setScene(new Scene(createBoard(), 830, 500));
-                        primaryStage.setTitle("Oware: AI Player");
-                    }
-                });*/
             }
         });
 
@@ -262,5 +239,24 @@ public class GameBoard extends Scene {
 
     public Sidebar getSidebar() {
         return sidebar;
+    }
+
+    public void gameOver(int winner) {
+        System.out.println("Got here gameBoard");
+        hbPOneHouseHolder.getChildren().removeAll();
+        hbPTwoHouseHolder.getChildren().removeAll();
+        hbPOneHouseHolder.getChildren().add(new Label("Game over"));
+
+        System.out.println("Should've removed buttons");
+
+        if (winner == 1) {
+            hbPTwoHouseHolder.getChildren().add(new Label("Player 1 Wins!"));
+            System.out.println("Should've added labels");
+        }
+        else if (winner == 2)
+            hbPTwoHouseHolder.getChildren().add(new Label("Player 2 Wins!"));
+        else
+            hbPTwoHouseHolder.getChildren().add(new Label("Draw!"));
+
     }
 }

@@ -68,7 +68,8 @@ public class TwoPlayerController implements EventHandler {
                     game.print();
                     if (!(p2 instanceof HumanPlayer)) {
                         game.print();
-                        game.makeMove(p2.nextMove(game.validHouses()));
+                        if(!game.checkScores())
+                            game.makeMove(p2.nextMove(game.validHouses()));
                     }
 
                 } else {
@@ -84,6 +85,7 @@ public class TwoPlayerController implements EventHandler {
 
             if (game.checkScores()) {
                 System.out.println("Game over");
+                view.gameOver(game.returnWinner());
             }
         }
     }
