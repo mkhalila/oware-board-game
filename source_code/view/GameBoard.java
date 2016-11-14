@@ -1,8 +1,13 @@
 package view;
 
 import controller.TwoPlayerController;
+import javafx.animation.Interpolator;
+import javafx.animation.PathTransition;
+import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -11,7 +16,15 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
+
 import java.util.ArrayList;
 
 /**
@@ -19,20 +32,27 @@ import java.util.ArrayList;
  */
 public class GameBoard extends Scene {
     private BorderPane bpGameBoard;
+    
     private HBox hbPOneHouseHolder, hbPTwoHouseHolder;
     private ArrayList<Button> alstAllHouses;
     private ScoreArc saScoreOne, saScoreTwo;
     private TwoPlayerController controller;
     private Sidebar sidebar;
+    private Pane animationPane;
 
     public GameBoard(double width, double height, TwoPlayerController controller) {
-        super(new BorderPane(), width, height);
+        super(new StackPane(), width, height);
+        
+        StackPane layerPane = (StackPane) this.getRoot();
+    	animationPane = new Pane();
+    	animationPane.setMouseTransparent(true);
 
         this.controller = controller;
 
         sidebar = new Sidebar(5);
 
-        BorderPane root = (BorderPane) getRoot();
+        //BorderPane root = (BorderPane) getRoot();
+        BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #1b2c47");
 
         bpGameBoard = new BorderPane();
@@ -119,7 +139,83 @@ public class GameBoard extends Scene {
         HBox hbEvenSpace = new HBox(btnEvenSpace);
         hbEvenSpace.setStyle("-fx-padding: 5px");
         root.setRight(hbEvenSpace);
+        layerPane.getChildren().addAll(root,animationPane);
+    }
+    
+    
+    public void doAnimation(){
+    	animationPane.getChildren().clear();
+    	for (Button b : alstAllHouses){
+    		//System.out.println(b.localToScene(b.getBoundsInLocal()).getMinX());
+    		//System.out.println(b.getText());
+    		int seedCount = Integer.parseInt(b.getText());
+    		double duration = seedCount;    		
+    		
+    		for (int i=0; i<seedCount; i++){
+    			Circle pathCircle = new Circle(b.localToScene(b.getBoundsInLocal()).getMinX()+50, b.localToScene(b.getBoundsInLocal()).getMinY()+50, 50);
+    			pathCircle.setRotate(360/seedCount*i);
+    			
+    			Circle seed = new Circle(5, Paint.valueOf("white"));
+        		PathTransition path = new PathTransition();
+            	path.setNode(seed);
+            	path.setDuration(Duration.seconds(duration));
+            	path.setPath(pathCircle);
+            	path.setCycleCount(PathTransition.INDEFINITE);
+            	path.setInterpolator(Interpolator.LINEAR);
+            	//path.setDelay(Duration.seconds(i*delay));
+            	path.play();
+            	animationPane.getChildren().addAll(seed);
+    		}   
+    	}    	
+    }
+    
+    public void moveAnimation(int houseNumber){
+    	System.out.println("Animate move");
+    	int seeds = Integer.parseInt(alstAllHouses.get(houseNumber).getText());
+    	System.out.println("House " + houseNumber + ", seeds: " + seeds);
+    	int nextHouse = houseNumber;
+    	int i = 1;
+    	while(i <= seeds) {
+            if((++nextHouse) % 12 == houseNumber)
+                continue;
+            shootSeed(houseNumber, nextHouse, 0.1*i, (i+1)>=seeds);
+            ++i;
+        }    	
+    }
+    
+    public void shootSeed(int fromHouse, int toHouse, double delay, boolean lastHouse){
+    	toHouse = toHouse%12;
+    	System.out.println("Shooting a seed from " + fromHouse + " to " + toHouse);
+    	Button fromButton = alstAllHouses.get(fromHouse);
+    	Button toButton = alstAllHouses.get(toHouse);
+    	double xFrom = 50 + fromButton.localToScene(fromButton.getBoundsInLocal()).getMinX();
+    	double yFrom = 50 + fromButton.localToScene(fromButton.getBoundsInLocal()).getMinY();
+    	double xTo = 50 + toButton.localToScene(toButton.getBoundsInLocal()).getMinX();
+    	double yTo = 50 + toButton.localToScene(toButton.getBoundsInLocal()).getMinY();
+    	Line linePath = new Line(xFrom, yFrom, xTo, yTo);
 
+		Circle seed = new Circle(5, Paint.valueOf("white"));
+    	PathTransition path = new PathTransition();
+    	path.setNode(seed);
+    	path.setDuration(Duration.seconds(delay));
+    	path.setPath(linePath);
+    	path.setCycleCount(1);
+    	path.setInterpolator(Interpolator.EASE_OUT);
+    	path.setDelay(Duration.seconds(delay));
+    	path.play();
+    	animationPane.getChildren().addAll(seed);
+    	if(lastHouse){
+	    	path.setOnFinished(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent event) {
+					doAnimation();
+					
+				}
+			});
+    	}
+    	//doAnimation();
+    	
     }
 
     private void hoverHouseButton(Button btnHouse) {
