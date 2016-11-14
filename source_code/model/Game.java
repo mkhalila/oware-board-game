@@ -107,12 +107,16 @@ public class Game {
     }
     
     /**
-     * Method to print the scores of the player to the console
+     * toString method for printing the state of the game (board and players' scores
      */
-    public void print(){
-        System.out.println("\t\tPlayer 2 (" + player2.getScore() + ")\n");
-        board.print();
-        System.out.println("\n\n\t\tPlayer 1 (" + player1.getScore() + ")");
+    public String toString(){
+    	String toReturn = "";
+    	
+        toReturn += "\t\tPlayer 2 (" + player2.getScore() + ")\n" + "\n";
+        toReturn += board;
+        toReturn += "\n\n\t\tPlayer 1 (" + player1.getScore() + ")" + "\n";
+        
+        return toReturn;
     }
     
     /**

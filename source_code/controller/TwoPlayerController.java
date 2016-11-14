@@ -70,38 +70,29 @@ public class TwoPlayerController implements EventHandler {
             	if(game.validHouses().isEmpty()) {
     				game.playersCaptureOwnSeeds();
     				
-    				//game is over thing
-    				
     			}else{
 	                validateHouses();
 	
 	                if (game.isPlayer1Turn()) {
 	                    game.makeMove(Integer.parseInt(source.getId()));
-	                    //view.moveAnimation(Integer.parseInt(source.getId()));
 	                    validateHouses();
 	                    updateHouses();
 	                    view.updateScores(p1.getScore(), p2.getScore());
-	                    //game.print();
 	                    if (!(p2 instanceof HumanPlayer)) {
 	                    	if(game.validHouses().isEmpty()) {
 	            				game.playersCaptureOwnSeeds();	
 	                    	}else{
-		                        game.print();
 		                        if(!game.checkScores())
 		                            game.makeMove(p2.nextMove(game.validHouses()));
-		                        	//view.moveAnimation(Integer.parseInt(source.getId()));
 	                    	}
 	                    }
 	
 	                } else {
 	                    game.makeMove(Integer.parseInt(source.getId()));
-	                   // view.moveAnimation(Integer.parseInt(source.getId()));
 	                }
 	
 	                validateHouses();
 	                updateHouses();
-	               // view.updateScores(p1.getScore(), p2.getScore());
-	               // game.print();
     			}
             }
 
