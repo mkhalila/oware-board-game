@@ -24,9 +24,11 @@ public class Board {
 		player2 = new ArrayList<Integer>(6);
 
 		for (int i = 0; i < 6; ++i) {
-			player1.add(4);
-			player2.add(4);
+			player1.add(0);
+			player2.add(0);
 		}
+		player2.set(0, 1);
+		player1.set(5, 1);
 		
 	}
 

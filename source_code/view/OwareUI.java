@@ -3,6 +3,8 @@ package view;
 import controller.TwoPlayerController;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -26,6 +28,7 @@ public class OwareUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Oware");
+        
 
         twoPController = new TwoPlayerController(this);
 
@@ -34,6 +37,24 @@ public class OwareUI extends Application {
         createMainMenu(primaryStage);
 
         primaryStage.show();
+        gameBoard.heightProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				//System.out.println("inside listener");
+				gameBoard.doAnimation();
+				
+			}
+		}) ;
+        gameBoard.widthProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				//System.out.println("inside listener");
+				gameBoard.doAnimation();
+				
+			}
+		});
     }
 
     private void createMainMenu(Stage primaryStage) {
@@ -45,6 +66,7 @@ public class OwareUI extends Application {
             public void handle(MouseEvent event) {
                 primaryStage.setScene(gameBoard);
                 primaryStage.setTitle("Oware: " + btnTwoPlayer.getText());
+                gameBoard.doAnimation();
             }
         });
         mainMenu.getBtnTwoPlayer().setOnAction(twoPController);
@@ -146,4 +168,14 @@ public class OwareUI extends Application {
         });
         gameOverDelay.play();
     }
+
+	public void doAnimation() {
+		gameBoard.doAnimation();
+		
+	}
+
+	public void moveAnimation(int houseNumber) {
+		gameBoard.moveAnimation(houseNumber);
+		
+	}
 }
