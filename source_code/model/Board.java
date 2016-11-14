@@ -191,7 +191,6 @@ public class Board {
 				validHouses.add(i);
 			}
 		}
-		
 		return validHouses;
 	}
 	
