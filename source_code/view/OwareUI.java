@@ -64,7 +64,7 @@ public class OwareUI extends Application {
     }
 
     private void createMainMenu(Stage primaryStage) {
-        mainMenu = new MainMenu(830, 500);
+        mainMenu = new MainMenu(890, 500);
 
         //Adds listener for two player button
         Button btnTwoPlayer = mainMenu.getBtnTwoPlayer();
@@ -105,7 +105,7 @@ public class OwareUI extends Application {
     }
 
     private void createBoard() {
-        gameBoard = new GameBoard(830, 500, twoPController);
+        gameBoard = new GameBoard(890, 500, twoPController);
 
         //Event handler for sidebar two player button
         gameBoard.getSidebar().getBtnTwoPlayer().setOnAction(twoPController);

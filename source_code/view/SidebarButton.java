@@ -21,7 +21,7 @@ public class SidebarButton extends Button {
     public SidebarButton(String text) {
         super(text);
 
-        setPrefWidth(114);
+        setPrefWidth(130);
         setStyle(sSideBarButtonStyle);
 
         //Makes the button a lighter shade of blue on mouse hover
