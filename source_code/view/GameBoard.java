@@ -28,53 +28,76 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 
 /**
- * Created by mkhal on 12/11/2016.
+ * Type of scene that represents the game board with 6 houses for each player, score arc for each player and SIDEBAR menu
  */
 public class GameBoard extends Scene {
+    //The container of the houses and the score arc
     private BorderPane bpGameBoard;
-    
+    //The containers for the house buttons
     private HBox hbPOneHouseHolder, hbPTwoHouseHolder;
+    //The Arraylist of all houses
     private ArrayList<Button> alstAllHouses;
+    //Score arc for each player's score
     private ScoreArc saScoreOne, saScoreTwo;
+    //The controller for the game
     private TwoPlayerController controller;
+    //The sidebar menu of the board
     private Sidebar sidebar;
+    //The pane that has the seed animations
     private Pane animationPane;
 
+    /**
+     * Creates game board with houses, scores and sidebar
+     * @param width The initial width of the scene
+     * @param height The initial height of the scene
+     * @param controller The Controller for the board passed by OwareUI
+     */
     public GameBoard(double width, double height, TwoPlayerController controller) {
         super(new StackPane(), width, height);
-        
+
+        //Initiates the animation pain that is transparent and ignored by the mouse
         StackPane layerPane = (StackPane) this.getRoot();
     	animationPane = new Pane();
     	animationPane.setMouseTransparent(true);
 
+        //Initialise controller
         this.controller = controller;
 
+        //Create and initialise sidebar
         sidebar = new Sidebar(5);
 
-        //BorderPane root = (BorderPane) getRoot();
+        //Creates the root container with coloured background
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #1b2c47");
 
+        //Creates border pane for the center of te board
         bpGameBoard = new BorderPane();
         root.setCenter(bpGameBoard);
         bpGameBoard.setStyle("-fx-background-color: #1b2c47");
 
+        //Vertical box containing the containers or both players houses
         VBox vbHouseHolder = new VBox(20);
         vbHouseHolder.setAlignment(Pos.CENTER);
 
+        //Horizontal box containing player one's buttons
         hbPOneHouseHolder = new HBox(10);
         hbPOneHouseHolder.setAlignment(Pos.CENTER);
 
+        //Horizontal box containing player two's buttons
         hbPTwoHouseHolder = new HBox(10);
         hbPTwoHouseHolder.setAlignment(Pos.CENTER);
 
+        //Adds containers of houses to vertical box
         vbHouseHolder.getChildren().addAll(hbPTwoHouseHolder, hbPOneHouseHolder);
 
         alstAllHouses = new ArrayList<>(12);
 
+        //Creates and adds 6 house buttons for player one
         for (int i = 0; i < 6; ++i) {
             Button btnOneHouse = new HouseButton("");
+            //Determines where the last seed from this button will land on hover
             hoverHouseButton(btnOneHouse);
+            //Assigns controller even listener
             btnOneHouse.setOnAction(controller);
             btnOneHouse.setId("" + i);
             btnOneHouse.setDisable(true);
@@ -82,9 +105,12 @@ public class GameBoard extends Scene {
             alstAllHouses.add(btnOneHouse);
         }
 
+        //Creates and adds 6 house buttons for player two
         for (int i = 11; i > 5; --i) {
             Button btnTwoHouse = new HouseButton("");
+            //Determines where the last seed from this button will land on hover
             hoverHouseButton(btnTwoHouse);
+            //Assigns controller even listener
             btnTwoHouse.setOnAction(controller);
             btnTwoHouse.setId("" + i);
             btnTwoHouse.setDisable(true);
@@ -94,28 +120,35 @@ public class GameBoard extends Scene {
 
         bpGameBoard.setCenter(vbHouseHolder);
 
+        //Creates score arc for player 1
         saScoreOne = new ScoreArc(0, "0");
 
+        //Adds player 1 score arc to board
         HBox hbArcOne = new HBox(saScoreOne);
         hbArcOne.setAlignment(Pos.CENTER);
         bpGameBoard.setBottom(hbArcOne);
 
+        //Creates score arc for player 2
         saScoreTwo = new ScoreArc(180, "0");
 
+        //Adds player 2 score arc to board
         HBox hbArcTwo = new HBox(saScoreTwo);
         hbArcTwo.setAlignment(Pos.CENTER);
         bpGameBoard.setTop(hbArcTwo);
 
+        //Creates a sidebar menu button
         MenuButton btnToMenu = new MenuButton("Menu");
         btnToMenu.setPrefWidth(80);
 
         BorderPane bpToMenu = new BorderPane();
 
+        //Adds menu button to top left of scene
         HBox hbToMenu = new HBox(btnToMenu);
         bpToMenu.setCenter(hbToMenu);
         hbToMenu.setStyle("-fx-padding: 5px");
         root.setLeft(bpToMenu);
 
+        //Event handler for menu button that displays the sidebar and hides the menu button when displayed
         btnToMenu.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -132,6 +165,7 @@ public class GameBoard extends Scene {
             }
         });
 
+        //Creates a identical menu button on opposite end to create even bezels
         MenuButton btnEvenSpace = new MenuButton("Menu");
         btnEvenSpace.setPrefWidth(80);
         btnEvenSpace.setVisible(false);
@@ -282,6 +316,10 @@ public class GameBoard extends Scene {
         for (Button b : alstAllHouses) b.setStyle(b.getStyle() + "-fx-border-width: 1px;");
     }
 
+    /**
+     * Enable the button house for a given house of player 1
+     * @param houseIn The house to enable
+     */
     public void enableP1House(int houseIn) {
         if ((houseIn >= 0) || (houseIn < 6)) {
             for (Node b : hbPOneHouseHolder.getChildren()) {
@@ -290,6 +328,10 @@ public class GameBoard extends Scene {
         }
     }
 
+    /**
+     * Enable the button house for a given house of player 2
+     * @param houseIn The house to enable
+     */
     public void enableP2House(int houseIn) {
         if ((houseIn >= 0) || (houseIn < 6)) {
             for (Node b : hbPTwoHouseHolder.getChildren()) {
@@ -298,6 +340,11 @@ public class GameBoard extends Scene {
         }
     }
 
+    /**
+     * Update no. of seeds in a given house of player 1
+     * @param houseID The house to update
+     * @param value The value to update the house to
+     */
     public void updateHouseP1(int houseID, int value) {
         for (Node b : hbPOneHouseHolder.getChildren()) {
             if (Integer.parseInt(b.getId()) == houseID) {
@@ -307,6 +354,11 @@ public class GameBoard extends Scene {
         }
     }
 
+    /**
+     * Update no. of seeds in a given house of player 1
+     * @param houseID The house to update
+     * @param value The value to update the house to
+     */
     public void updateHouseP2(int houseID, int value) {
         for (Node b : hbPTwoHouseHolder.getChildren()) {
             if (Integer.parseInt(b.getId()) == houseID) {
@@ -316,23 +368,38 @@ public class GameBoard extends Scene {
         }
     }
 
+    /**
+     * Updates scores of both players
+     * @param scoreP1 Score of player 1
+     * @param scoreP2 Score of player 2
+     */
     public void updateScores(int scoreP1, int scoreP2) {
         saScoreOne.updateScore(scoreP1);
         saScoreTwo.updateScore(scoreP2);
     }
 
+    /**
+     * Disables all of Player 1's buttons
+     */
     public void disableAllP1() {
         for (Node b : hbPOneHouseHolder.getChildren()) {
             b.setDisable(true);
         }
     }
 
+    /**
+     * Disables all of player 2's button
+     */
     public void disableAllP2() {
         for (Node b : hbPTwoHouseHolder.getChildren()) {
             b.setDisable(true);
         }
     }
 
+    /**
+     * Grants access to the sidebar
+     * @return The Sidebar of the board
+     */
     public Sidebar getSidebar() {
         return sidebar;
     }
