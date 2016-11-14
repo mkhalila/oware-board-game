@@ -178,4 +178,5 @@ public class OwareUI extends Application {
 		gameBoard.moveAnimation(houseNumber);
 		
 	}
+
 }
