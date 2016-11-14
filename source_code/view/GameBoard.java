@@ -178,7 +178,7 @@ public class GameBoard extends Scene {
     	while(i <= seeds) {
             if((++nextHouse) % 12 == houseNumber)
                 continue;
-            shootSeed(houseNumber, nextHouse, 0.1*i, (i+1)>=seeds);
+            shootSeed(houseNumber, nextHouse, 0.2*i, (i+1)>=seeds);
             ++i;
         }    	
     }
