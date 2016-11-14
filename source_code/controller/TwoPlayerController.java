@@ -7,11 +7,21 @@ import model.*;
 import view.GameBoard;
 import view.OwareUI;
 
+
+/**
+ * Event handler and controller.
+ * Reacts to button mouse clicks, controls the flow of the game and updates the view
+ * 
+ */
 public class TwoPlayerController implements EventHandler {
     private Game game;
     private OwareUI view;
     private Player p1, p2;
 
+    /**
+     * Public constructor for TwoPlayerController
+     * @param viewIn reference to view
+     */
     public TwoPlayerController(OwareUI viewIn) {
         view = viewIn;
     }
@@ -20,31 +30,31 @@ public class TwoPlayerController implements EventHandler {
     public void handle(Event event) {
         Button source = (Button) event.getSource();
 
+        
+        // When "2 player" button is pressed
         if (source.getText().equals("2 Player")) {
             p1 = new HumanPlayer();
             p2 = new HumanPlayer();
             game = new Game(p1, p2);
-
             validateHouses();
-
             updateHouses();
             view.updateScores(p1.getScore(), p2.getScore());
         }
 
+        // When "Random Player" button is pressed
         if (source.getText().equals("Random Player")) {
             p1 = new HumanPlayer();
             p2 = new RandomPlayer();
             game = new Game(p1, p2);
-
             if (!game.isPlayer1Turn())  {
                 game.makeMove(p2.nextMove(game.validHouses()));
             }
-
             validateHouses();
             updateHouses();
             view.updateScores(p1.getScore(), p2.getScore());
         }
 
+        // When "AI Player" button is pressed
         if (source.getText().equals("AI Player")) {
             p1 = new HumanPlayer();
             p2 = new AIPlayer();
@@ -53,7 +63,6 @@ public class TwoPlayerController implements EventHandler {
             if (!game.isPlayer1Turn()) {
                 game.makeMove(p2.nextMove(game.validHouses()));
             }
-
             validateHouses();
             updateHouses();
             view.updateScores(p1.getScore(), p2.getScore());
@@ -65,42 +74,53 @@ public class TwoPlayerController implements EventHandler {
             isHouseButton = true;
         } catch (NumberFormatException e) {}
 
+        // If the button pressed is a houseButton
         if (isHouseButton) {
             if (!game.checkScores()) {
-            	if(game.validHouses().isEmpty()) {
-    				game.playersCaptureOwnSeeds();
-    				
-    			}else{
 	                validateHouses();
 	
 	                if (game.isPlayer1Turn()) {
 	                    game.makeMove(Integer.parseInt(source.getId()));
+	                    //view.moveAnimation(Integer.parseInt(source.getId()));
 	                    validateHouses();
 	                    updateHouses();
 	                    view.updateScores(p1.getScore(), p2.getScore());
+	                    if(game.validHouses().isEmpty()) {
+            				game.playersCaptureOwnSeeds();
+            				view.gameOver(game.returnWinner());         				
+            			}
+	                    //game.print();
 	                    if (!(p2 instanceof HumanPlayer)) {
-	                    	if(game.validHouses().isEmpty()) {
-	            				game.playersCaptureOwnSeeds();	
-	                    	}else{
+	                    	
+		                        //game.print();
 		                        if(!game.checkScores())
 		                            game.makeMove(p2.nextMove(game.validHouses()));
-	                    	}
+		                        	//view.moveAnimation(Integer.parseInt(source.getId()));
+
+	                    	if(game.validHouses().isEmpty()) {
+	            				game.playersCaptureOwnSeeds();
+	            				view.gameOver(game.returnWinner());          				
+	            			}
 	                    }
 	
 	                } else {
 	                    game.makeMove(Integer.parseInt(source.getId()));
+	                    view.updateScores(p1.getScore(), p2.getScore());
+	                    if(game.validHouses().isEmpty()) {
+            				game.playersCaptureOwnSeeds();
+            				view.gameOver(game.returnWinner());          				
+            			}
 	                }
 	
 	                validateHouses();
 	                updateHouses();
-    			}
-            }
+	                view.updateScores(p1.getScore(), p2.getScore());
+	               // game.print();
 
-
-           if (game.checkScores()) {
+                view.doAnimation();
+            }else{
         	   view.gameOver(game.returnWinner());
            }
-           view.doAnimation();
         }
     }
 
