@@ -3,8 +3,7 @@ package model;
 import java.util.ArrayList;
 
 /**
- * An abstract class representing a player in a game of Owari
- * @author David
+ * An abstract class representing a player in a game of Oware
  *
  */
 

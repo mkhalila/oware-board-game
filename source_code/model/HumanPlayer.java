@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * A class representing a human player for a game of Owari
- * @author David
+ * A class representing a human player for a game of Oware
  *
  */
 

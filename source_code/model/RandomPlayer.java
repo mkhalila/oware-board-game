@@ -3,8 +3,7 @@ package model;
 import java.util.ArrayList;
 
 /**
- * A class representing a player that makes random moves in game of Owari
- * @author David
+ * A class representing a player that makes random moves in game of Oware
  *
  */
 

@@ -3,8 +3,7 @@ import java.lang.Math;
 import java.util.ArrayList;
 
 /**
- * Class that represents a game of Owari
- * @author David
+ * Class that represents a game of Oware
  *
  */
 public class Game {
