@@ -19,8 +19,7 @@ public class Game {
         player1.playGame(this);
         player2.playGame(this);
         isFinished = false;
-        isP1Turn = false;
-        //isP1Turn = Math.random() < 0.5;
+        isP1Turn = Math.random() < 0.5;
     }
     
     public Game(Game other) {
