@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -251,7 +252,6 @@ public class GameBoard extends Scene {
     	//doAnimation();
     	
     }
-
     private void hoverHouseButton(Button btnHouse) {
         final String sBtnStyle = "-fx-font-size: 20px; " +
                 "-fx-background-color: #1b2c47; " +

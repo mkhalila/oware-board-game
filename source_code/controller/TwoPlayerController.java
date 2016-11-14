@@ -92,7 +92,6 @@ public class TwoPlayerController implements EventHandler {
 	                    //game.print();
 	                    if (!(p2 instanceof HumanPlayer)) {
 	                    	
-		                        //game.print();
 		                        if(!game.checkScores())
 		                            game.makeMove(p2.nextMove(game.validHouses()));
 		                        	//view.moveAnimation(Integer.parseInt(source.getId()));

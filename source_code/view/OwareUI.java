@@ -230,4 +230,5 @@ public class OwareUI extends Application {
 	public void moveAnimation(int houseNumber) {
 		gameBoard.moveAnimation(houseNumber);
 	}
+
 }
