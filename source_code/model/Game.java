@@ -121,6 +121,7 @@ public class Game {
 			player2.setScore(player2.getScore() + i);
 		
 		board.clear();
+		isFinished = true;
 		
 	}
 	
