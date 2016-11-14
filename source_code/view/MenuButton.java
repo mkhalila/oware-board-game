@@ -5,7 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Created by mkhal on 12/11/2016.
+ * Represents the style of button used for the Game's menu buttons
+ * Has custom styling and hover animations.
  */
 public class MenuButton extends Button {
     private final String sBtnStyle = "-fx-font-size: 18px; " +
