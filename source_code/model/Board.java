@@ -27,8 +27,6 @@ public class Board {
 			player1.add(4);
 			player2.add(4);
 		}
-		//player2.set(5, 1);
-		//player1.set(0, 1);
 
 		
 	}
