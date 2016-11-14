@@ -39,6 +39,14 @@ public class GameBoard extends Scene {
     private TwoPlayerController controller;
     private Sidebar sidebar;
     private Pane animationPane;
+    private Thread animationThread = new Thread(new Runnable() {
+
+		@Override
+		public void run() {
+			doAnimation();
+		}
+    	
+    });
 
     public GameBoard(double width, double height, TwoPlayerController controller) {
         super(new StackPane(), width, height);
@@ -169,8 +177,42 @@ public class GameBoard extends Scene {
     	}    	
     }
     
+    public void stopAnimation(int house){
+    	animationPane.getChildren().clear();
+    	for (Button b : alstAllHouses){
+    		if(Integer.parseInt(b.getId()) != house) { 
+	    		//System.out.println(b.localToScene(b.getBoundsInLocal()).getMinX());
+	    		//System.out.println(b.getText());
+	    		int seedCount = Integer.parseInt(b.getText());
+	    		int duration = seedCount;    
+	    		
+	    		for (int i=0; i<seedCount; i++){
+	    			Circle pathCircle = new Circle(b.localToScene(b.getBoundsInLocal()).getMinX()+50, b.localToScene(b.getBoundsInLocal()).getMinY()+50, 50);
+	    			pathCircle.setRotate(360/seedCount*i);
+	    			
+	    			Circle seed = new Circle(5, Paint.valueOf("white"));
+	        		PathTransition path = new PathTransition();
+	            	path.setNode(seed);
+	            	path.setDuration(Duration.seconds(duration));
+	            	path.setPath(pathCircle);
+	            	path.setCycleCount(PathTransition.INDEFINITE);
+	            	path.setInterpolator(Interpolator.LINEAR);
+	            	//path.setDelay(Duration.seconds(i*delay));
+	            	path.play();
+	            	animationPane.getChildren().addAll(seed);
+	    		}   
+	    	} 
+    	}
+    }
     public void moveAnimation(int houseNumber){
     	System.out.println("Animate move");
+    	stopAnimation(houseNumber);
+    	try {
+			animationThread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	int seeds = Integer.parseInt(alstAllHouses.get(houseNumber).getText());
     	System.out.println("House " + houseNumber + ", seeds: " + seeds);
     	int nextHouse = houseNumber;
@@ -180,7 +222,7 @@ public class GameBoard extends Scene {
                 continue;
             shootSeed(houseNumber, nextHouse, 0.1*i, (i+1)>=seeds);
             ++i;
-        }    	
+        } 
     }
     
     public void shootSeed(int fromHouse, int toHouse, double delay, boolean lastHouse){

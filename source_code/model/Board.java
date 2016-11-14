@@ -172,7 +172,7 @@ public class Board {
 		case 2: {
 			for(int j= 0; j < player2.size(); ++j) {
 				if(player2.get(j) >= (6 - j)) {
-					validHouses.add(j);
+					validHouses.add(j+6);
 				}
 			}
 			break;

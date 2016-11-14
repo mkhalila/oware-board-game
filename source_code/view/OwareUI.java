@@ -77,6 +77,7 @@ public class OwareUI extends Application {
             public void handle(MouseEvent event) {
                 primaryStage.setScene(gameBoard);
                 primaryStage.setTitle("Oware: " + btnRandom.getText());
+                gameBoard.doAnimation();
             }
         });
         mainMenu.getBtnRandom().setOnAction(twoPController);
@@ -87,6 +88,7 @@ public class OwareUI extends Application {
             public void handle(MouseEvent event) {
                 primaryStage.setScene(gameBoard);
                 primaryStage.setTitle("Oware: " + btnAI.getText());
+                gameBoard.doAnimation();
             }
         });
         mainMenu.getBtnAI().setOnAction(twoPController);
