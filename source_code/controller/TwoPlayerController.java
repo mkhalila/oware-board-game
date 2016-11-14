@@ -79,13 +79,14 @@ public class TwoPlayerController implements EventHandler {
             				game.playersCaptureOwnSeeds();
             				view.gameOver(game.returnWinner());         				
             			}
-	                    //game.print();
 	                    if (!(p2 instanceof HumanPlayer)) {
 	                    	
-		                        game.print();
 		                        if(!game.checkScores())
 		                            game.makeMove(p2.nextMove(game.validHouses()));
 		                        	//view.moveAnimation(Integer.parseInt(source.getId()));
+		                        if(game.checkScores()){
+				                	view.gameOver(game.returnWinner());
+				                }
 
 	                    	if(game.validHouses().isEmpty()) {
 	            				game.playersCaptureOwnSeeds();
@@ -96,6 +97,11 @@ public class TwoPlayerController implements EventHandler {
 	                } else {
 	                    game.makeMove(Integer.parseInt(source.getId()));
 	                    view.updateScores(p1.getScore(), p2.getScore());
+	                    validateHouses();
+		                updateHouses();
+		                if(game.checkScores()){
+		                	view.gameOver(game.returnWinner());
+		                }
 	                    if(game.validHouses().isEmpty()) {
             				game.playersCaptureOwnSeeds();
             				view.gameOver(game.returnWinner());          				
@@ -105,7 +111,6 @@ public class TwoPlayerController implements EventHandler {
 	                validateHouses();
 	                updateHouses();
 	                view.updateScores(p1.getScore(), p2.getScore());
-	               // game.print();
 
                 view.doAnimation();
             }else{
