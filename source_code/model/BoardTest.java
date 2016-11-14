@@ -113,9 +113,15 @@ public class BoardTest {
 	{
 		Board testBoard = new Board();
 		ArrayList<Integer> testList1 = new ArrayList<>();
+		ArrayList<Integer> testList1Player2 = new ArrayList<>();
 		for (int i = 2; i < 6; ++i)
 		{
 			testList1.add(i);
+		}
+		
+		for (int i = 8; i < 12; ++i)
+		{
+			testList1Player2.add(i);
 		}
 		
 		ArrayList<Integer> testList2 = new ArrayList<>(Collections.nCopies(6, 0));
@@ -129,7 +135,7 @@ public class BoardTest {
 		testBoard.setPlayer1(testList2);
 		testBoard.setPlayer2(testList3);
 
-		assertEquals(testList1, testBoard.getValidHouses(2));	
+		assertEquals(testList1Player2, testBoard.getValidHouses(2));	
 	}
 	
 	@Test
@@ -167,27 +173,34 @@ public class BoardTest {
 	{
 		Board testBoard = new Board();
 		ArrayList<Integer> testList = new ArrayList<>();
+		ArrayList<Integer> testList2 = new ArrayList<>();
 		for (int i = 0; i < 6; ++i)
 		{
 			testList.add(i);
+		}
+		
+		for (int i = 6; i < 12; ++i)
+		{
+			testList2.add(i);
 		}
 		
 		//Test initial board for player1
 		assertEquals(testList, testBoard.getPlayer1Without0());
 		
 		//Test initial board for player2
-		assertEquals(testList, testBoard.getPlayer2Without0());
+		assertEquals(testList2, testBoard.getPlayer2Without0());
 		
 		//Remove house 2 from list
 		testList.remove(2);
 		testBoard.emptyHouse(2); //Empty house 2
 		testBoard.emptyHouse(8); //Empty house 8 (equivalent house)
+		testList2.remove(2);
 		
 		//Test board with value removed for player1
 		assertEquals(testList, testBoard.getPlayer1Without0());
 		
 		//Test board with value removed for player2
-		assertEquals(testList, testBoard.getPlayer2Without0());
+		assertEquals(testList2, testBoard.getPlayer2Without0());
 	}
 	
 	@Test
