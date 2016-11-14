@@ -27,7 +27,7 @@ public class MenuButton extends Button {
         setPrefWidth(200);
         setStyle(sBtnStyle);
 
-        //Set the bg colour to a light blue from white on mouse hover
+        //Set the border colour to a light blue from white on mouse hover
         setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
